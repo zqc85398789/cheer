@@ -68,7 +68,7 @@
 										data-path="<%=request.getContextPath() %>" class="btn">注册</button>
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-									<label class="text-danger">${msg }</label>
+									<label class="text-danger">${login_msg }</label>
 								</div>
 							</div>
 						</form>

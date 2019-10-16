@@ -3,6 +3,8 @@ package com.cheer.beans;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.cheer.util.DateUtil;
+
 public class Income {
 	private Integer id;
 	private String item;
@@ -117,6 +119,10 @@ public class Income {
 		this.version = version;
 	}
 
+	public String getDateTimeLocal() {
+		return DateUtil.dateFormat(received_time, DateUtil.DATEMINUTE_PATTERN).replace(' ', 'T');
+	}
+	
 	@Override
 	public String toString() {
 		return "Income [id=" + id + ", item=" + item + ", income_source=" + income_source + ", received_by="

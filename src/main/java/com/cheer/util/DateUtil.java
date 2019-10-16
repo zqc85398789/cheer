@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class DateUtil {
 	public static final String DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+	public static final String DATEMINUTE_PATTERN = "yyyy-MM-dd HH:mm";
 	public static final String DATE_PATTERN = "yyyy-MM-dd";
 	
 	/**
@@ -40,6 +41,9 @@ public class DateUtil {
 	public static Date dateParse(String dateString,String pattern) throws ParseException {
 		if(pattern == null || "".equals(pattern.trim())) {
 			pattern = DATETIME_PATTERN;
+		}
+		if(DATEMINUTE_PATTERN.equals(pattern)) {
+			dateString = dateString.replace('T', ' ');
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		return sdf.parse(dateString);

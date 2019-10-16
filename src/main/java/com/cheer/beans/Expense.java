@@ -3,6 +3,8 @@ package com.cheer.beans;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.cheer.util.DateUtil;
+
 public class Expense {
 	private Integer id;
 	private String item;
@@ -117,6 +119,10 @@ public class Expense {
 		this.version = version;
 	}
 
+	public String getDateTimeLocal() {
+		return DateUtil.dateFormat(expensed_time, DateUtil.DATEMINUTE_PATTERN).replace(' ', 'T');
+	}
+	
 	@Override
 	public String toString() {
 		return "Expense [id=" + id + ", item=" + item + ", expensed_to=" + expensed_to + ", expensed_by=" + expensed_by
@@ -124,6 +130,5 @@ public class Expense {
 				+ ", create_time=" + create_time + ", update_by=" + update_by + ", update_time=" + update_time
 				+ ", version=" + version + "]";
 	}
-	
 	
 }

@@ -23,7 +23,10 @@ public class LoginRegistController {
 	private LoginRegistService loginRegistService;
 	
 	@RequestMapping("loginPage.do")
-	public String loginPage() {
+	public String loginPage(HttpSession session) {
+		if(session.getAttribute("loginUser")!=null) {
+			return "index";
+		}
 		return "login";
 	}
 	
@@ -42,7 +45,7 @@ public class LoginRegistController {
 			return "redirect:index.do";
 		}
 		request.setAttribute("username", username);
-		request.setAttribute("msg", "登录信息不正确，请检查后重试");
+		request.setAttribute("login_msg", "登录信息不正确，请检查后重试");
 		return "login";
 	}
 
@@ -77,5 +80,14 @@ public class LoginRegistController {
 	@RequestMapping("index.do")
 	public String index() {
 		return "index";
+	}
+	
+	
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+		if(session.getAttribute("loginUser")!=null){
+			session.removeAttribute("loginUser");
+		}
+		return "redirect:loginPage.do";
 	}
 }

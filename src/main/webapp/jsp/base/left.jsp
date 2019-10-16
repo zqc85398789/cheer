@@ -9,6 +9,7 @@
 		<li><a href="<%=request.getContextPath()%>/jsp/data_statement.jsp">数据查询</a></li>
 		<li><a href="<%=request.getContextPath()%>/jsp/labourers_family.jsp">民工之家</a></li>
 		<li><a href="<%=request.getContextPath()%>/jsp/month_best.jsp">月度最佳</a></li>
+		<li class="tally"><a href="<%=request.getContextPath()%>/incomePage.do">收支记录</a></li>
 	</ul>
 	<div class="container-fluid">
 		&nbsp;
