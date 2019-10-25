@@ -1,0 +1,1 @@
+INSERT INTO user (username,password,legal_name,empno,permission,create_by,create_time) VALUES('admin','a123456','管理员','A00001','admin','adimin','2019-10-06 10:22:00');

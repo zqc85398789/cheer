@@ -2,7 +2,7 @@ CREATE DATABASE cheer;
 
 DROP TABLE user;
 
---员工表
+-- 员工表
 CREATE TABLE user(
 id INT PRIMARY KEY AUTO_INCREMENT,
 username VARCHAR(30) NOT NULL UNIQUE,
@@ -13,14 +13,13 @@ gender CHAR(1),
 tel_no VARCHAR(20),
 dimission_date Date,
 empno CHAR(6), #编号，结构为字母+5位数字，A、B、T、E分别表示管理员、老板、组长、员工
+permission char(10) NOT NULL DEFAULT 'nomal',
 create_by varchar(30) NOT NULL,
 create_time DATETIME NOT NULL,
 update_by varchar(30),
 update_time DATETIME,
 version INT DEFAULT 1 NOT NULL
 );
-
-INSERT INTO user (username,password,legal_name,empno,create_by,create_time) VALUES('admin','a123456','管理员','A00001','adimin','2019-10-06 10:22:00');
 
 
 DROP TABLE income;

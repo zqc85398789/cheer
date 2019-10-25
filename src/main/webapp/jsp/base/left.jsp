@@ -26,5 +26,5 @@
 		<label class="text-danger h3">${message }</label>
 	</div>
 </div>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.12.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap/jquery-1.12.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/left.js"></script>

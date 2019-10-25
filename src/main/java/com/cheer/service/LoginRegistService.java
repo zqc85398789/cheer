@@ -20,7 +20,7 @@ public class LoginRegistService {
 	 * @param isAdmin
 	 * @return
 	 */
-	public boolean loginCheck(User user,String isAdmin) {
+	public boolean loginCheck(User user) {
 		if(user.getPassword()==null||"".equals(user.getPassword().trim())) {
 			return false;
 		}
@@ -31,7 +31,9 @@ public class LoginRegistService {
 		if(!user.getPassword().equals(queryUser.getPassword())) {
 			return false;
 		}
-		if("Y".equals(isAdmin) && !queryUser.getEmpno().matches("[A][\\d]*")) {
+		if("admin".equals(user.getPermission()) && !"admin".equals(queryUser.getPermission())) {
+			System.out.println(user.getPermission());
+			System.out.println(queryUser.getPermission());
 			return false;
 		}
 		return true;

@@ -9,11 +9,11 @@
 	String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ request.getContextPath();
 %>
-<link href="<%=path%>/css/bootstrap.css" rel="stylesheet"
+<link href="<%=path%>/css/bootstrap/bootstrap.css" rel="stylesheet"
 	type="text/css">
-<link href="<%=path%>/css/bootstrap-theme.css" rel="stylesheet"
+<link href="<%=path%>/css/bootstrap/bootstrap-theme.css" rel="stylesheet"
 	type="text/css">
-<link href="<%=path%>/css/styles.css" rel="stylesheet" type="text/css">
+<link href="<%=path%>/css/bootstrap/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="container-fluid">
@@ -130,7 +130,7 @@
 		</div>
 	</div>
 
-	<script src="<%=path%>/js/jquery-1.12.js"></script>
-	<script src="<%=path%>/js/bootstrap.js"></script>
+	<script src="<%=path%>/js/bootstrap/jquery-1.12.js"></script>
+	<script src="<%=path%>/js/bootstrap/bootstrap.js"></script>
 </body>
 </html>

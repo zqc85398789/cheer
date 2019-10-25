@@ -4,5 +4,5 @@
 	<li class="now-active"><a href="<%=request.getContextPath()%>/incomePage.do">收入记录</a></li>
 	<li><a href="<%=request.getContextPath()%>/expensePage.do">支出记录</a></li>
 </ul>
-<script src="<%=request.getContextPath()%>/js/jquery-1.12.js"></script>
-<script src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap/jquery-1.12.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.js"></script>

@@ -4,7 +4,7 @@
 			+ request.getContextPath();
 %>
 <div class="row head navbar navbar-default navbar-fixed-top">
-	<div class="col col-lg-2 col-md-2 col-sm-2 col-xs-2">
+	<div class="col col-lg-2 col-md-2 col-sm-2 col-xs-2 logo-div">
 		<img class="logo" src="<%=img_path %>/images/logo.jpg">
 	</div>
 	<div class="col col-lg-9 col-md-9 col-sm-9 col-xs-9"></div>

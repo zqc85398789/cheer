@@ -48,10 +48,10 @@ public class UserDAOImpl extends BaseDAO implements IUserDAO{
 	 * 修改用户信息
 	 */
 	public int updateUser(User user) {
-		String sql = "update user set password=?,legal_name=?,birth_date=?,gender=?,tel_no=?,empno=?,"
+		String sql = "update user set password=?,legal_name=?,birth_date=?,gender=?,tel_no=?,empno=?,permission=?"
 				+ "update_by=?,update_time=?,version = version+1 where username=?";
 		int row = getJdbcTemplate().update(sql,new Object[] {user.getPassword(),user.getLegal_name(),DateUtil.dateFormat(user.getBirth_date(), DateUtil.DATE_PATTERN),
-				user.getGender(),user.getTel_no(),user.getEmpno(),user.getUpdate_by(),DateUtil.dateFormat(DateUtil.currentTime(), DateUtil.DATETIME_PATTERN),user.getUsername()});
+				user.getGender(),user.getTel_no(),user.getEmpno(),user.getPermission(),user.getUpdate_by(),DateUtil.dateFormat(DateUtil.currentTime(), DateUtil.DATETIME_PATTERN),user.getUsername()});
 		return row;
 	}
 
@@ -60,7 +60,7 @@ public class UserDAOImpl extends BaseDAO implements IUserDAO{
 	 * 根据用户名查询用户
 	 */
 	public User queryByUsername(String username) {
-		String sql = "select username,password,legal_name,birth_date,gender,tel_no,empno,"
+		String sql = "select username,password,legal_name,birth_date,gender,tel_no,empno,permission,"
 				+ "create_by,create_time,update_by,update_time,version from user where username=?";
 		List<Map<String,Object>> queryList = getJdbcTemplate().queryForList(sql,username);
 		if(queryList.size()==0) {
@@ -76,6 +76,7 @@ public class UserDAOImpl extends BaseDAO implements IUserDAO{
 			user.setGender((String)row.get("gender"));
 			user.setTel_no((String)row.get("tel_no"));
 			user.setEmpno((String)row.get("empno"));
+			user.setPermission((String)row.get("permission"));
 			user.setCreate_by((String)row.get("create_by"));
 			user.setCreate_time((Date)row.get("create_time"));
 			user.setUpdate_by((String)row.get("update_by"));
@@ -91,7 +92,7 @@ public class UserDAOImpl extends BaseDAO implements IUserDAO{
 	 */
 	public List<User> queryAll() {
 		List<User> userList = new ArrayList<User>();
-		String sql = "select username,password,legal_name,birth_date,gender,tel_no,empno,"
+		String sql = "select username,password,legal_name,birth_date,gender,tel_no,empno,permission,"
 				+ "create_by,create_time,update_by,update_time,version from user";
 		List<Map<String,Object>> queryList = getJdbcTemplate().queryForList(sql);
 		if(queryList.size()==0) {
@@ -106,6 +107,7 @@ public class UserDAOImpl extends BaseDAO implements IUserDAO{
 			user.setGender((String)row.get("gender"));
 			user.setTel_no((String)row.get("tel_no"));
 			user.setEmpno((String)row.get("empno"));
+			user.setPermission((String)row.get("permission"));
 			user.setCreate_by((String)row.get("create_by"));
 			user.setCreate_time((Date)row.get("create_time"));
 			user.setUpdate_by((String)row.get("update_by"));

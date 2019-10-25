@@ -17,12 +17,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cheer.beans.Expense;
 import com.cheer.beans.Income;
 import com.cheer.beans.User;
+import com.cheer.controller.base.BaseController;
 import com.cheer.service.ExpenseService;
 import com.cheer.service.IncomeService;
 import com.cheer.util.DateUtil;
 
 @Controller
-public class IncomeExpenseController {
+public class IncomeExpenseController extends BaseController{
 	@Resource(name="incomeService")
 	IncomeService incomeService;
 	

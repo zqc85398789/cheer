@@ -49,8 +49,8 @@
 		</div>
 	</div>
 
-	<script src="<%=path %>/js/jquery-1.12.js"></script>
-	<script src="<%=path %>/js/bootstrap.js"></script>
+	<script src="<%=path %>/js/bootstrap/jquery-1.12.js"></script>
+	<script src="<%=path %>/js/bootstrap/bootstrap.js"></script>
 	<script src="https://cdn.bootcss.com/holder/2.9.4/holder.js"></script>
 	<script src="<%=path %>/js/labourers_family.js"></script>
 </body>

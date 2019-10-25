@@ -2,21 +2,30 @@ package com.cheer.beans;
 
 import java.util.Date;
 
-public class User {
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
+public class User extends BaseBean{
 	private Integer id;
+	@NotBlank(message="{user.username.empty}")
+	@Length(min=5,max=16,message="{user.username.outofsize}")
 	private String username;
+	@NotBlank(message="{user.password.empty}")
+	@Length(min=8,max=16,message="{user.password.outofsize}")
 	private String password;
+	@NotBlank(message="{user.password.empty}")
+	private String password_check;
+	@NotBlank(message="{user.legalname.empty}")
 	private String legal_name;
+	@Past(message="{user.birthdate.future}")
 	private Date birth_date;
 	private String gender;
 	private String tel_no;
 	private String empno;
 	private Date dimission_date;
-	private String create_by;
-	private Date create_time;
-	private String update_by;
-	private Date update_time;
-	private Integer version;
+	private String permission;
 
 	public User() {
 		super();
@@ -101,51 +110,20 @@ public class User {
 		this.dimission_date = dimission_date;
 	}
 
-	public String getCreate_by() {
-		return create_by;
+	public String getPermission() {
+		return permission;
 	}
 
-	public void setCreate_by(String create_by) {
-		this.create_by = create_by;
+	public void setPermission(String permission) {
+		this.permission = permission;
 	}
 
-	public Date getCreate_time() {
-		return create_time;
+	public String getPassword_check() {
+		return password_check;
 	}
 
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
+	public void setPassword_check(String password_check) {
+		this.password_check = password_check;
 	}
-
-	public String getUpdate_by() {
-		return update_by;
-	}
-
-	public void setUpdate_by(String update_by) {
-		this.update_by = update_by;
-	}
-
-	public Date getUpdate_time() {
-		return update_time;
-	}
-
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
-	}
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", legal_name=" + legal_name
-				+ ", birth_date=" + birth_date + ", gender=" + gender + ", tel_no=" + tel_no + ", empno=" + empno
-				+ ", create_by=" + create_by + ", create_time=" + create_time + ", update_by=" + update_by
-				+ ", update_time=" + update_time + ", version=" + version + "]";
-	}
+	
 }

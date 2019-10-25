@@ -1,9 +1,9 @@
-var verify_username = false;
+/*var verify_username = false;
 var verify_password = false;
 var verify_password_check = false;
 var verify_legal_name = false;
 
-/*校验用户名*/
+校验用户名
 $(function() {
 	$("#username").blur(function() {
 		var username = this.value;
@@ -25,7 +25,7 @@ $(function() {
 	});
 })
 
-/*校验密码*/
+校验密码
 $(function() {
 	$("#password").blur(function() {
 		var password = this.value;
@@ -54,7 +54,7 @@ $(function() {
 	});
 })
 
-/*校验两次密码一致性*/
+校验两次密码一致性
 var check_consistency = function() {
 	var password_check = $("#password_check").val();
 	var password = $("#password").val();
@@ -81,7 +81,7 @@ $(function() {
 	});
 })
 
-/*提交控制*/
+提交控制
 $(function() {
 	$("#regist_submit").click(function() {
 		var allow_submit = verify_username && verify_password && verify_password_check && verify_legal_name;
@@ -93,3 +93,4 @@ $(function() {
 		}
 	});
 })
+*/
