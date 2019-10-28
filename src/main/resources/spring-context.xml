@@ -56,7 +56,7 @@
 		<property name="basenames">
 			<list>
 				<value>classpath:properties/message </value>
-				<!-- <value>classpath:properties/errorMessage</value> -->
+				<value>classpath:properties/errorMessage</value>
 			</list>
 		</property>
 	</bean>

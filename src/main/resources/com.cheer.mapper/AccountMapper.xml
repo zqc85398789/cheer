@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cheer.mapper.AccountMapper">
+	<!-- 定义实体类包别名后可省略type -->
+	<resultMap type="com.cheer.beans.Account" id="accountMapper">
+		<result property="id" column="id" />
+		<result property="name" column="account_name" />
+		<result property="password" column="account_password" />
+		<result property="createdBy" column="created_by"/>
+		<result property="createdTime" column="created_time" />
+		<result property="updateBy" column="update_by"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="version" column="version"/>
+	</resultMap>
+	
+	<select id="queryAccounts">
+		select id,account_name,account_password,created_by,created_time 
+		from i_account
+		<where>
+			<choose>
+				<when test="id!=null and id!=''">
+					id=#{id}
+				</when>
+				<when test="name!=null and name!=''">
+					and account_name=#{name}
+				</when>
+				<when test="password!=null and password!=''">
+					and account_password=#{password}
+				</when>
+				<when test="createdBy!=null and createdBy!=''">
+					and created_by=#{createdBy}
+				</when>
+				<when test="startTime!=null and endTime!=null">
+					and created_time between #{startTime} and #{endTime}
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<insert id="insertAccount" useGeneratedKeys="true" keyProperty="id">
+		insert into i_account account_name,account_password,created_by,created_time values 
+		#{name},#{password},#{createdBy},#{createdTime}
+	</insert>
+	
+	<update id="updateAccount">
+		update i_account set 
+			<if test="password!=null and password!=''">
+				account_password = #{password}
+			</if>
+			id = #{id} where id=#{id}
+	</update>
+</mapper>

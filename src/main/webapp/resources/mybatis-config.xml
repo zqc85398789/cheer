@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	<!-- 全局参数 -->
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<!-- 实体类包的别名 -->
+	<typeAliases>
+		<package name="com.cheer.beans"/>
+	</typeAliases>
+	
+	<!-- 环境集合属性 -->
+	<environments default="dev">
+		<environment id="dev">
+			<!-- 事务管理器 -->
+			<transactionManager type="JDBC"></transactionManager>
+			<!-- 数据源 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/cheer?characterEncoding=UTF-8"/>
+				<property name="username" value="root"/>
+				<property name="password" value="zqc67335347"/>
+			</dataSource>
+		</environment>	
+	</environments>
+	
+	<!-- 映射器 -->
+	<mappers>
+		<mapper resource="com/cheer/mapper/AccountMapper.xml" />
+	</mappers>
+</configuration>

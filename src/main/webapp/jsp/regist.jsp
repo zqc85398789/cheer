@@ -100,9 +100,13 @@
 							</div>
 							<div class="form-group row">
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 									<button type="submit" id="regist_submit"
 										class="btn btn-primary">完成注册</button>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+									<button type="button" id="login"
+										data-path="<%=request.getContextPath() %>" class="btn">返回登录</button>
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<form:errors path="*" cssClass="text-danger"></form:errors>

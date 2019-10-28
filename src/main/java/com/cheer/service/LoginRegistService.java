@@ -11,15 +11,15 @@ import com.cheer.util.DateUtil;
 @Service
 public class LoginRegistService {
 	
-	@Resource(name="userDAO")
+	/*@Resource(name="userDAO")
 	private IUserDAO userDAO;
 	
-	/**
+	*//**
 	 * 登录验证
 	 * @param user
 	 * @param isAdmin
 	 * @return
-	 */
+	 *//*
 	public boolean loginCheck(User user) {
 		if(user.getPassword()==null||"".equals(user.getPassword().trim())) {
 			return false;
@@ -39,19 +39,19 @@ public class LoginRegistService {
 		return true;
 	}
 	
-	/**
+	*//**
 	 * 注册验证
 	 * @param user
 	 * @return
-	 */
+	 *//*
 	public boolean registCheck(User user) {
 		User queryUser = userDAO.queryByUsername(user.getUsername());
 		if(queryUser != null) {
 			return false;
 		}
-		user.setCreate_by(user.getUsername());
-		user.setCreate_time(DateUtil.currentTime());
+		user.setCreatedBy(user.getUsername());
+		user.setCreatedTime(DateUtil.currentTime());
 		userDAO.addUser(user);
 		return true;
-	}
+	}*/
 }

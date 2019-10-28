@@ -2,43 +2,61 @@ package com.cheer.beans;
 
 import java.util.Date;
 
+import com.cheer.util.DateUtil;
+
+@SuppressWarnings("unused")
 public class BaseBean {
-	private String create_by;
-	private Date create_time;
-	private String update_by;
-	private Date update_time;
+	private Integer id;
+	private Date createdTime;
+	private String createdBy;
+	private Date updateTime;
+	private String updateBy;
 	private Integer version;
+	private String createdTimeAsStr;
+	private String updateTimeAsStr;
 
-	public String getCreate_by() {
-		return create_by;
+	public BaseBean() {
+		super();
 	}
 
-	public void setCreate_by(String create_by) {
-		this.create_by = create_by;
+	public Integer getId() {
+		return id;
 	}
 
-	public Date getCreate_time() {
-		return create_time;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
 
-	public String getUpdate_by() {
-		return update_by;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 
-	public void setUpdate_by(String update_by) {
-		this.update_by = update_by;
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
-	public Date getUpdate_time() {
-		return update_time;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
 	}
 
 	public Integer getVersion() {
@@ -47,6 +65,22 @@ public class BaseBean {
 
 	public void setVersion(Integer version) {
 		this.version = version;
+	}
+
+	public String getCreatedTimeAsStr() {
+		return DateUtil.dateFormat(this.createdTime, DateUtil.DATE_PATTERN);
+	}
+
+	public void setCreatedTimeAsStr(String createdTimeAsStr) {
+		this.createdTimeAsStr = DateUtil.dateFormat(this.createdTime, DateUtil.DATE_PATTERN);
+	}
+
+	public String getUpdateTimeAsStr() {
+		return DateUtil.dateFormat(this.updateTime, DateUtil.DATE_PATTERN);
+	}
+
+	public void setUpdateTimeAsStr(String updateTimeAsStr) {
+		this.updateTimeAsStr = DateUtil.dateFormat(this.updateTime, DateUtil.DATE_PATTERN);
 	}
 
 }

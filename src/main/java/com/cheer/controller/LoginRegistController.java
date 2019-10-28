@@ -23,7 +23,7 @@ import com.cheer.util.DateUtil;
 @Controller
 public class LoginRegistController {
 	
-	private static Logger logger = Logger.getLogger(LoginRegistController.class);
+	/*private static Logger logger = Logger.getLogger(LoginRegistController.class);
 	
 	@Resource(name="loginRegistService")
 	private LoginRegistService loginRegistService;
@@ -78,5 +78,5 @@ public class LoginRegistController {
 			session.removeAttribute("loginUser");
 		}
 		return "redirect:loginPage.do";
-	}
+	}*/
 }

@@ -1,57 +1,99 @@
-CREATE DATABASE cheer;
+-- ---
+-- Table 'i_staff'
+-- 员工信息表
+-- ---
 
-DROP TABLE user;
+DROP TABLE IF EXISTS `i_staff`;
+		
+CREATE TABLE `i_staff` (
+  `id` INTEGER NULL AUTO_INCREMENT,
+  `staff_name` VARCHAR(20) NOT NULL,
+  `birth_date` DATE NULL,
+  `telephone_no` VARCHAR(15) NULL,
+  `id_card` VARCHAR(20) NOT NULL,
+  `gender` CHAR(1),
+  `emergency_contact` VARCHAR(20) NULL COMMENT '紧急联系人',
+  `emergency_tel` VARCHAR(15) NULL COMMENT '紧急联系电话',
+  `created_time` DATETIME NOT NULL,
+  `created_by` VARCHAR(20) NOT NULL,
+  `update_time` DATETIME,
+  `update_by` VARCHAR(20),
+  `version` INTEGER DEFAULT 1,
+  PRIMARY KEY (`id`)
+) COMMENT '员工信息表';
 
--- 员工表
-CREATE TABLE user(
-id INT PRIMARY KEY AUTO_INCREMENT,
-username VARCHAR(30) NOT NULL UNIQUE,
-password VARCHAR(30) NOT NULL,
-legal_name VARCHAR(20) NOT NULL,
-birth_date DATE,
-gender CHAR(1),
-tel_no VARCHAR(20),
-dimission_date Date,
-empno CHAR(6), #编号，结构为字母+5位数字，A、B、T、E分别表示管理员、老板、组长、员工
-permission char(10) NOT NULL DEFAULT 'nomal',
-create_by varchar(30) NOT NULL,
-create_time DATETIME NOT NULL,
-update_by varchar(30),
-update_time DATETIME,
-version INT DEFAULT 1 NOT NULL
+-- ---
+-- Table 'i_account_staff'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `i_account_staff`;
+		
+CREATE TABLE `i_account_staff` (
+  `id` INTEGER NULL AUTO_INCREMENT,
+  `account_id` INTEGER NOT NULL,
+  `staff_id` INTEGER NOT NULL,
+  `created_time` DATETIME NOT NULL,
+  `created_by` VARCHAR(20) NOT NULL,
+  `update_time` DATETIME,
+  `update_by` VARCHAR(20),
+  `version` INTEGER DEFAULT 1,
+  PRIMARY KEY (`id`)
 );
 
+-- ---
+-- Table 'i_account_privilege'
+-- 
+-- ---
 
-DROP TABLE income;
-
--- 收入表
-CREATE TABLE income(
-id INT PRIMARY KEY AUTO_INCREMENT,
-item VARCHAR(100) NOT NULL,
-income_source VARCHAR(100) NOT NULL,
-received_by VARCHAR(30) NOT NULL,
-amount DECIMAL(10,2) NOT NULL,
-received_time DATETIME NOT NULL,
-create_by varchar(30) NOT NULL,
-create_time DATETIME NOT NULL,
-update_by varchar(30),
-update_time DATETIME,
-version INT DEFAULT 1 NOT NULL
+DROP TABLE IF EXISTS `i_account_privilege`;
+		
+CREATE TABLE `i_account_privilege` (
+  `id` INTEGER NULL AUTO_INCREMENT,
+  `account_id` INTEGER NOT NULL,
+  `privilege_id` INTEGER NOT NULL,
+  `created_time` DATETIME NOT NULL,
+  `created_by` VARCHAR(20) NOT NULL,
+  `update_time` DATETIME,
+  `update_by` VARCHAR(20),
+  `version` INTEGER DEFAULT 1,
+  PRIMARY KEY (`id`)
 );
 
-DROP TABLE expense;
+-- ---
+-- Table 'i_account'
+-- 账户表
+-- ---
 
--- 支出表
-CREATE TABLE expense(
-id INT PRIMARY KEY AUTO_INCREMENT,
-item VARCHAR(100) NOT NULL,
-expensed_to VARCHAR(100) NOT NULL,
-expensed_by VARCHAR(30) NOT NULL,
-amount DECIMAL(10,2) NOT NULL,
-expensed_time DATETIME NOT NULL,
-create_by varchar(30) NOT NULL,
-create_time DATETIME NOT NULL,
-update_by varchar(30),
-update_time DATETIME,
-version INT DEFAULT 1 NOT NULL
-);
+DROP TABLE IF EXISTS `i_account`;
+		
+CREATE TABLE `i_account` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `account_name` VARCHAR(20) NOT NULL,
+  `account_password` VARCHAR(20) NOT NULL,
+  `created_time` DATETIME NOT NULL,
+  `created_by` VARCHAR(20) NOT NULL,
+  `update_time` DATETIME,
+  `update_by` VARCHAR(20),
+  `version` INTEGER DEFAULT 1,
+  PRIMARY KEY (`id`)
+) COMMENT '账户表';
+
+-- ---
+-- Table 'i_privilege'
+-- 权限表
+-- ---
+
+DROP TABLE IF EXISTS `i_privilege`;
+		
+CREATE TABLE `i_privilege` (
+  `id` INTEGER NULL AUTO_INCREMENT,
+  `privilege_name` VARCHAR(20) NULL,
+  `privilege_url` VARCHAR(20) NULL,
+  `created_time` DATETIME NOT NULL,
+  `created_by` VARCHAR(20) NOT NULL,
+  `update_time` DATETIME,
+  `update_by` VARCHAR(20),
+  `version` INTEGER DEFAULT 1,
+  PRIMARY KEY (`id`)
+) COMMENT '权限表';
