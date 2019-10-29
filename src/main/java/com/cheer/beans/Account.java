@@ -18,6 +18,7 @@ public class Account extends BaseBean {
 	@IsPassword(message="{account.accountPassword.errorPattern}")
 	private String accountPassword;
 	private String passwordCheck;
+	private Staff staff;
 
 	public Account() {
 		super();
@@ -52,6 +53,14 @@ public class Account extends BaseBean {
 
 	public void setPasswordCheck(String passwordCheck) {
 		this.passwordCheck = passwordCheck;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
 	}
 
 }

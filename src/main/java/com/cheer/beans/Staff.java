@@ -13,13 +13,14 @@ public class Staff extends BaseBean {
 	private String gender;
 	private String emergencyContact;
 	private String emergency_tel;
+	private String empno;
 
 	public Staff() {
 		super();
 	}
 
 	public Staff(String staffName, Date birthDate, String telephoneNo, String idCard, String gender,
-			String emergencyContact, String emergency_tel) {
+			String emergencyContact, String emergency_tel, String empno) {
 		super();
 		this.staffName = staffName;
 		this.birthDate = birthDate;
@@ -28,6 +29,7 @@ public class Staff extends BaseBean {
 		this.gender = gender;
 		this.emergencyContact = emergencyContact;
 		this.emergency_tel = emergency_tel;
+		this.empno = empno;
 	}
 
 	public String getStaffName() {
@@ -87,17 +89,25 @@ public class Staff extends BaseBean {
 	}
 
 	public String getBirthDateAsStr() {
-		if(this.birthDate == null) {
+		if (this.birthDate == null) {
 			return "";
 		}
 		return DateUtil.dateFormat(this.birthDate, DateUtil.DATE_PATTERN);
 	}
 
 	public void setBirthDateAsStr(String birthDateAsStr) {
-		if(this.birthDate == null) {
+		if (this.birthDate == null) {
 			this.birthDateAsStr = "";
 		}
 		this.birthDateAsStr = DateUtil.dateFormat(this.birthDate, DateUtil.DATE_PATTERN);
 	}
-	
+
+	public String getEmpno() {
+		return empno;
+	}
+
+	public void setEmpno(String empno) {
+		this.empno = empno;
+	}
+
 }

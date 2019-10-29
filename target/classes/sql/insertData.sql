@@ -1,1 +1,5 @@
-INSERT INTO user (username,password,legal_name,empno,permission,create_by,create_time) VALUES('admin','a123456','管理员','A00001','admin','adimin','2019-10-06 10:22:00');
+INSERT INTO i_account (account_name,account_password,created_time,created_by) values ('Nanami','N0001',now(),'admin');
+
+INSERT INTO i_privilege (privilege_name,privilege_url,created_time,created_by) values ('admin','/admin',now(),'admin');
+INSERT INTO i_privilege (privilege_name,privilege_url,created_time,created_by) values ('boss','/boss',now(),'admin');
+INSERT INTO i_privilege (privilege_name,privilege_url,created_time,created_by) values ('default','/default',now(),'admin');

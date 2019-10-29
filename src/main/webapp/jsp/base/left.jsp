@@ -3,13 +3,14 @@
 <div class="left-aside text-center col col-lg-2 col-md-2 col-sm-2 col-xs-2">
 	<div class="h4 text-info">页面导航</div>
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href="<%=request.getContextPath()%>/jsp/index.jsp">首页</a></li>
-		<li><a href="<%=request.getContextPath()%>/jsp/user_info.jsp">个人信息</a></li>
-		<li><a href="<%=request.getContextPath()%>/jsp/clock_in_daily.jsp">每日打卡</a></li>
-		<li><a href="<%=request.getContextPath()%>/jsp/data_statement.jsp">数据查询</a></li>
-		<li><a href="<%=request.getContextPath()%>/jsp/labourers_family.jsp">民工之家</a></li>
-		<li><a href="<%=request.getContextPath()%>/account/createAccountPage.do">创建账号</a></li>
-		<li class="tally"><a href="<%=request.getContextPath()%>/incomePage.do">收支记录</a></li>
+		<li><a href="<%=request.getContextPath()%>/homePage.do">首页</a></li>
+		<li><a href="<%=request.getContextPath()%>/staff.do">员工管理</a></li>
+		<li><a href="<%=request.getContextPath()%>/laborHour.do">工时管理</a></li>
+		<li><a href="<%=request.getContextPath()%>/vacate.do">请假记录</a></li>
+		<li><a href="<%=request.getContextPath()%>/code.do">code管理</a></li>
+		<li><a href="<%=request.getContextPath()%>/account.do">账号管理</a></li>
+		<li class="tally"><a href="<%=request.getContextPath()%>/incomePage.do">营收管理</a></li>
+		<li><a href="<%=request.getContextPath()%>/salary.do">工资管理</a></li>
 	</ul>
 	<div class="container-fluid">
 		&nbsp;

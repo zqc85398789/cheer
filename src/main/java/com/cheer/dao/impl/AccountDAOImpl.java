@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import com.cheer.beans.Account;
 import com.cheer.dao.base.BaseDAO;
 import com.cheer.mapper.AccountMapper;
+import com.cheer.util.DateUtil;
 
 @Repository("accountDAO")
 public class AccountDAOImpl extends BaseDAO implements AccountMapper{
@@ -19,7 +20,7 @@ public class AccountDAOImpl extends BaseDAO implements AccountMapper{
 	public int insertAccount(Account account) {
 		String sql = "insert into i_account (account_name,account_password,created_by,created_time) values(?,?,?,?)";
 		int row = getJdbcTemplate().update(sql,new Object[] {account.getAccountName(),account.getAccountPassword(),
-				account.getCreatedBy(),account.getCreatedTimeAsStr()});
+				account.getCreatedBy(),DateUtil.dateFormat(DateUtil.currentTime(), DateUtil.DATETIME_PATTERN)});
 		return row;
 	}
 

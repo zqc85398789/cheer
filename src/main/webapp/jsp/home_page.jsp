@@ -24,7 +24,7 @@
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 text-center">
 				<div class="row">
 					<div class="col-lg-6">
-						<h3 class="text-primary">用户<b>${loginUser.username}</b>您好！欢迎使用工程管理系统</h3>
+						<h3 class="text-primary">用户<b>${loginAccount.accountName}</b>您好！欢迎使用工程管理系统</h3>
 					</div>
 				</div>
 				<div class="row">

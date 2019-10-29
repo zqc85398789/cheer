@@ -33,7 +33,6 @@ public class AccountController {
 		response.setContentType("text/html;utf-8");
 	}
 	
-	
 	@RequestMapping("createAccountPage.do")
 	public String createAccountPage(@ModelAttribute("account")Account account) {
 		return "create_account";
@@ -41,7 +40,7 @@ public class AccountController {
 	
 	@RequestMapping("createAccount.do")
 	public String createAccount(@ModelAttribute("account") @Valid Account account,BindingResult br,@Param("privilegeId")String privilegeId ,Model model) {
-		account.setCreatedBy("admin");
+		account.setCreatedBy("admin");//此处实写，实际因从session获取
 		account.setCreatedTime(DateUtil.currentTime());
 		if(br.hasErrors()) {
 			ObjectError objError =  br.getGlobalError();

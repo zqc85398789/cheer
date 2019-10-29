@@ -83,6 +83,11 @@ body {
 	width:40px;
 }
 
+.username_font {
+	font-size: 1.5em;
+	color:#ffffff;
+}
+
 .now-active {
 	background-color: #d2d7d8;
 }
@@ -95,4 +100,8 @@ body {
 
 .card-progress {
 	width:80%;
+}
+
+.th,.td{
+	width:11%;
 }

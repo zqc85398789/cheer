@@ -26,16 +26,14 @@
 				<div class="row login-form">
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
 					<div class="form-back col-lg-6 col-md-6 col-sm-6 col-xs-6">
-						<form:form action="login.do" method="post" modelAttribute="user">
+						<form:form action="login.do" method="post" modelAttribute="account">
 							<div class="form-group row">
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 								<label
 									class="article col-lg-2 col-md-2 col-sm-2 col-xs-2 text-primary"
 									for="username">用户名：</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-									<%-- <input type="text" class="form-control" id="username" name="username"
-										value="${username}" placeholder="请输入用户名"> --%>
-									<form:input path="username" cssClass="form-control" id="username" placeholder="请输入用户名"/>
+									<form:input path="accountName" cssClass="form-control" id="username" value="${account.accountName}" placeholder="请输入用户名"/>
 								</div>
 							</div>
 							<div class="form-group row">
@@ -44,10 +42,10 @@
 									class="article col-lg-2 col-md-2 col-sm-2 col-xs-2 text-primary"
 									for="password">密&emsp;码：</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-									<form:password path="password" id="password" cssClass="form-control"/>
+									<form:password path="accountPassword" id="password" cssClass="form-control"/>
 								</div>
 							</div>
-							<div class="form-group row">
+							<%-- <div class="form-group row">
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 								<label
 									class="article col-lg-2 col-md-2 col-sm-2 col-xs-2 text-primary"
@@ -58,7 +56,7 @@
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-primary">
 									<form:radiobutton path="permission" id="permission" label="普通用户" value="nomal"/>
 								</div>
-							</div>
+							</div> --%>
 							<div class="form-group row">
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
