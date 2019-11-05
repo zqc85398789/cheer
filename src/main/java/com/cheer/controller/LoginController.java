@@ -30,7 +30,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping("loginPage.do")
-	public String loginPage(@ModelAttribute("account") Account account) {
+	public String loginPage(@ModelAttribute("account") Account account,HttpSession session) {
+		if(session.getAttribute("loginAccount")!=null) {
+			return "home_page";
+		}
 		return "login";
 	}
 	
@@ -43,6 +46,13 @@ public class LoginController {
 			return "redirect:homePage.do";
 		}
 		model.addAttribute("login_msg","登陆失败，请检查账户密码后重试");
+		return "login";
+	}
+	
+	@RequestMapping("logout.do")
+	public String logout(@ModelAttribute("account") Account account,HttpSession session) {
+		session.removeAttribute("loginAccount");
+		session.removeAttribute("loginPrivilege");
 		return "login";
 	}
 }

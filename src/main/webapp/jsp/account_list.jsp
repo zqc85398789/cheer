@@ -25,25 +25,29 @@
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
 			<div
 				class="col-lg-8 col-md-8 col-lg-8 col-xs-8 text-center form-back">
+				<%@include file="base/account_tag.jsp"%>
 				<br>
 				<div class="row text-primary">
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-						<form action="queryAccount.do" method="post">
+						<!-- 查询条件表单 -->
+						<form action="queryAccount.do" method="post" id="query_param">
 							<div class="form-group row">
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+									<!-- 查询页号 -->
+									<input type="hidden" name="queryPage" id="query_page" value="1">
 									<!-- 账户名 -->
-									<input type="text" name="accountName" class="form-control"
+									<input type="text" name="accountName" value="${account.accountName}" class="form-control"
 										placeholder="输入用户名查询">
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 									<!-- 员工号 -->
-									<input type="text" name="empno" class="form-control"
+									<input type="text" name="staff.empno" value="${account.staff.empno }" class="form-control"
 										placeholder="输入员工号查询">
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 									<!-- 姓名 -->
-									<input type="text" name="staffName" class="form-control"
+									<input type="text" name="staff.staffName" value="${account.staff.staffName }" class="form-control"
 										placeholder="输入姓名查询">
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -52,7 +56,9 @@
 							</div>
 						</form>
 					</div>
+
 				</div>
+				<!-- 显示部分 -->
 				<div class="row">
 					<div>
 						<!-- 显示账号 -->
@@ -92,21 +98,31 @@
 							</c:choose>
 						</table>
 					</div>
-					<div class="row text-primary">
-						<div>
+				</div>
+				<!-- 分页标签 -->
+				<div class="row text-primary">
+					<div>
+						<input type="hidden" id="current_page" value="${current_page }" />
+						<input type="hidden" id="max_page" value="${max_page }" />
+						<c:if test="${not empty current_page }">
 							<ul class="pagination">
-								<li><a href="#"><i
+								<li><a href="#" class="page_tag" data-current="1"><i
 										class="glyphicon glyphicon-fast-backward"></i></a></li>
-								<li><a href="#"><i class="glyphicon glyphicon-backward"></i></a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#"><i
-										class="glyphicon glyphicon-fast-forward"></i></a></li>
-								<li><a href="#"><i class="glyphicon glyphicon-forward"></i></a></li>
+								<li><a href="#" class="page_tag"
+									data-current="${current_page-1}" ><i
+										class="glyphicon glyphicon-backward"></i></a></li>
+								<c:forEach begin="1" end="${max_page}" varStatus="status">
+									<li class=""><a href="#" class="page_tag num_tag"
+										data-current="${status.count}">${status.count}</a></li>
+								</c:forEach>
+								<li><a href="#" class="page_tag"
+									data-current="${current_page+1}"><i
+										class="glyphicon glyphicon-forward"></i></a></li>
+								<li><a href="#" class="page_tag" data-current="${max_page}">
+										<i class="glyphicon glyphicon-fast-forward"></i>
+								</a></li>
 							</ul>
-						</div>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -115,7 +131,6 @@
 
 	<script src="<%=path%>/js/bootstrap/jquery-1.12.js"></script>
 	<script src="<%=path%>/js/bootstrap/bootstrap.js"></script>
-	<script src="<%=path%>/js/regist.js"></script>
 	<script src="<%=path%>/js/account.js"></script>
 </body>
 </html>

@@ -4,20 +4,21 @@
 	<div class="h4 text-info">页面导航</div>
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href="<%=request.getContextPath()%>/homePage.do">首页</a></li>
-		<li><a href="<%=request.getContextPath()%>/staff.do">员工管理</a></li>
-		<li><a href="<%=request.getContextPath()%>/laborHour.do">工时管理</a></li>
-		<li><a href="<%=request.getContextPath()%>/vacate.do">请假记录</a></li>
-		<li><a href="<%=request.getContextPath()%>/code.do">code管理</a></li>
-		<li><a href="<%=request.getContextPath()%>/account.do">账号管理</a></li>
-		<li class="tally"><a href="<%=request.getContextPath()%>/incomePage.do">营收管理</a></li>
-		<li><a href="<%=request.getContextPath()%>/salary.do">工资管理</a></li>
+		<li><a href="<%=request.getContextPath()%>/staffList.do">员工管理</a></li>
+		<li><a href="<%=request.getContextPath()%>/laborHourList.do">工时管理</a></li>
+		<li><a href="<%=request.getContextPath()%>/vacateList.do">请假记录</a></li>
+		<li><a href="<%=request.getContextPath()%>/codeList.do">code管理</a></li>
+		<li class="account"><a href="<%=request.getContextPath()%>/account/accountList.do">账号管理</a></li>
+		<li class="tally"><a href="<%=request.getContextPath()%>/financePage.do">营收管理</a></li>
+		<li><a href="<%=request.getContextPath()%>/salaryPage.do">工资管理</a></li>
 	</ul>
 	<div class="container-fluid">
 		&nbsp;
 		<div class="h4 text-info">联系方式</div>
 		<address class="text-info text-left">
-			邮箱：xxxxxx@163.com<br>
-			电话：159xxxxxxxx
+			联系人：珀尔牛
+			邮&nbsp;箱：xxxxxx@163.com<br>
+			电&nbsp;话：13616278952
 		</address>
 	</div>
 	<div class="container-fluid text-center">

@@ -76,11 +76,18 @@ public class BaseBean {
 	}
 
 	public String getUpdateTimeAsStr() {
+		if(this.updateTime==null) {
+			return "";
+		}
 		return DateUtil.dateFormat(this.updateTime, DateUtil.DATE_PATTERN);
 	}
 
 	public void setUpdateTimeAsStr(String updateTimeAsStr) {
-		this.updateTimeAsStr = DateUtil.dateFormat(this.updateTime, DateUtil.DATE_PATTERN);
+		if(this.updateTime!=null) {
+			this.updateTimeAsStr = DateUtil.dateFormat(this.updateTime, DateUtil.DATE_PATTERN);
+		}else {
+			this.updateTimeAsStr="";
+		}
 	}
 
 }

@@ -26,7 +26,10 @@ public class AccountPrivilegeDAOImpl extends BaseDAO implements AccountPrivilege
 
 	@Override
 	public int updateAccountPrivilege(AccountPrivilege accountPrivilege) {
-		return 0;
+		String sql = "update i_account_privilege set privilege_id=?,update_by=?,update_time=? where account_id=?";
+		int row = getJdbcTemplate().update(sql,new Object[] {accountPrivilege.getPrivilegeId(),accountPrivilege.getUpdateBy(),
+				DateUtil.dateFormat(DateUtil.currentTime(), DateUtil.DATETIME_PATTERN),accountPrivilege.getAccountId()});
+		return row;
 	}
 
 	@Override

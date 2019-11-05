@@ -92,6 +92,10 @@ body {
 	background-color: #d2d7d8;
 }
 
+.pagination > li > .now-active {
+	background-color: #d2d7d8;
+}
+
 .card-block {
 	background-color: #ffffff;
 	padding: 1em;

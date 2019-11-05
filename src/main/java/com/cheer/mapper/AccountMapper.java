@@ -10,4 +10,5 @@ public interface AccountMapper {
 	public int updateAccount(Account account);
 	
 	public List<Account> queryAccounts(Account account);
+
 }

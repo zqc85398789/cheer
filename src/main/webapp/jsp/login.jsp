@@ -26,7 +26,7 @@
 				<div class="row login-form">
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
 					<div class="form-back col-lg-6 col-md-6 col-sm-6 col-xs-6">
-						<form:form action="login.do" method="post" modelAttribute="account">
+						<form:form action="/cheer/login.do" method="post" modelAttribute="account">
 							<div class="form-group row">
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 								<label

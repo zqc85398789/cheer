@@ -35,11 +35,17 @@ public class AccountDAOImpl extends BaseDAO implements AccountMapper{
 	@Override
 	public List<Account> queryAccounts(Account account) {
 		String sql = "select id,account_name,account_password,created_by,created_time,update_by,update_time,version from"
-				+ " i_account where 1=1 and";
-		if(!StringUtils.isEmpty(account.getAccountName())) {
+				+ " i_account where";
+		Object[] params = new Object[1];
+		//优先根据id查询
+		if(account.getId()!=null) {
+			sql = sql + " id=?";
+			params[0] = account.getId();
+		}else if(!StringUtils.isEmpty(account.getAccountName())) {
 			sql = sql + " account_name=?";
+			params[0] = account.getAccountName();
 		}
-		List<Map<String,Object>> result = getJdbcTemplate().queryForList(sql,new Object[] {account.getAccountName()});
+		List<Map<String,Object>> result = getJdbcTemplate().queryForList(sql,params);
 		List<Account> accounts = new ArrayList<Account>();
 		for(Map<String,Object> row:result) {
 			Integer id = (Integer) row.get("id");
@@ -63,5 +69,5 @@ public class AccountDAOImpl extends BaseDAO implements AccountMapper{
 		}
 		return accounts;
 	}
-	
+
 }

@@ -19,7 +19,7 @@ public class BaseController {
 		Object obj = session.getAttribute("loginAccount");
 		if(obj==null) {
 			request.setAttribute("login_msg", "对不起，请登录后再访问");
-			request.getRequestDispatcher("loginPage.do").forward(request, response);
+			request.getRequestDispatcher("/loginPage.do").forward(request, response);
 		}
 	}
 }

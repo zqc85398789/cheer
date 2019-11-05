@@ -27,6 +27,8 @@
 		<hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
 		<mybatis.version>3.3.0</mybatis.version>
 		<log4j.version>1.2.17</log4j.version>
+		<json.verson>2.9.3</json.verson>
+		<fastjson.verson>1.2.47</fastjson.verson>
 	</properties>
 
 	<dependencies>
@@ -181,6 +183,17 @@
 			<artifactId>tomcat-jasper-el</artifactId>
 			<version>8.5.24</version>
 			<scope>provided</scope>
+		</dependency>
+		<!-- json -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${json.verson}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.verson}</version>
 		</dependency>
 	</dependencies>
 	<build>
