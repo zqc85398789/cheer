@@ -9,7 +9,7 @@ import com.cheer.beans.Account;
 import com.cheer.mapper.AccountMapper;
 import com.cheer.util.DateUtil;
 
-public class AccountDAOImplTest{
+public class TestAccountDAOImpl{
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
 	private AccountMapper accountDAO = (AccountMapper)context.getBean("accountDAO");
 	

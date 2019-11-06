@@ -11,4 +11,5 @@ public interface AccountMapper {
 	
 	public List<Account> queryAccounts(Account account);
 
+	public int lastInsertId();
 }

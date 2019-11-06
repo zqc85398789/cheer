@@ -90,7 +90,7 @@
 										class="btn btn-primary">创建账号</button>
 								</div>
 								<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-danger">
-									${create_account_msg}
+									${account_create_msg}
 								</label>
 							</div>
 						</form:form>

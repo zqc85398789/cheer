@@ -18,7 +18,7 @@ import com.cheer.mapper.StaffMapper;
 import com.cheer.util.DateUtil;
 
 @Service
-public class AccountService {
+public class StaffService {
 	@Resource(name="accountDAO")
 	AccountMapper accountDAO;
 	@Resource(name="accountPrivilegeDAO")
@@ -28,7 +28,7 @@ public class AccountService {
 	@Resource(name="staffDAO")
 	StaffMapper staffDAO;
 	
-	public boolean accountExists(Account account) {
+/*	public boolean accountExists(Account account) {
 		if(accountDAO.queryAccounts(account).size()>0) {
 			return true;
 		}
@@ -85,16 +85,21 @@ public class AccountService {
 	public List<Account> queryAccountStaff(Account account, int currentPage) {
 		List<Account> list = accountStaffDAO.queryAccountStaff(account, currentPage);
 		return list;
-	}
+	}*/
 	
-	public int getMaxPage(Account account) {
+	public int getMaxPage(Staff staff) {
 		try {
-			int row = accountStaffDAO.countAccountStaff(account);
+			int row = staffDAO.countStaff(staff);
 			return row%5==0?(row/5):(row/5+1);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+
+	public List<Account> queryStaff(Staff staff, int queryPage) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

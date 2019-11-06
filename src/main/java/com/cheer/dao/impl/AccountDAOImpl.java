@@ -1,5 +1,6 @@
 package com.cheer.dao.impl;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -68,6 +69,14 @@ public class AccountDAOImpl extends BaseDAO implements AccountMapper{
 			accounts.add(ac);
 		}
 		return accounts;
+	}
+
+	@Override
+	public int lastInsertId() {
+		String sql = "select last_insert_id() id";
+		List<Map<String,Object>> queryList = getJdbcTemplate().queryForList(sql);
+		BigInteger id = (BigInteger)queryList.get(0).get("id");
+		return id.intValue();
 	}
 
 }

@@ -14,6 +14,8 @@ public class Staff extends BaseBean {
 	private String emergencyContact;
 	private String emergency_tel;
 	private String empno;
+	private Account account;
+
 
 	public Staff() {
 		super();
@@ -108,6 +110,15 @@ public class Staff extends BaseBean {
 
 	public void setEmpno(String empno) {
 		this.empno = empno;
+	}
+	
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 }

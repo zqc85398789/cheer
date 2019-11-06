@@ -4,7 +4,7 @@
 	<div class="h4 text-info">页面导航</div>
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href="<%=request.getContextPath()%>/homePage.do">首页</a></li>
-		<li><a href="<%=request.getContextPath()%>/staffList.do">员工管理</a></li>
+		<li><a href="<%=request.getContextPath()%>/staff/staffList.do">员工管理</a></li>
 		<li><a href="<%=request.getContextPath()%>/laborHourList.do">工时管理</a></li>
 		<li><a href="<%=request.getContextPath()%>/vacateList.do">请假记录</a></li>
 		<li><a href="<%=request.getContextPath()%>/codeList.do">code管理</a></li>
@@ -16,9 +16,9 @@
 		&nbsp;
 		<div class="h4 text-info">联系方式</div>
 		<address class="text-info text-left">
-			联系人：珀尔牛
+			联系人：xxx<br>
 			邮&nbsp;箱：xxxxxx@163.com<br>
-			电&nbsp;话：13616278952
+			电&nbsp;话：136xxxxxxx
 		</address>
 	</div>
 	<div class="container-fluid text-center">

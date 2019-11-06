@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.cheer.beans.Account;
+import com.cheer.beans.AccountStaff;
 import com.cheer.beans.Staff;
 import com.cheer.dao.base.BaseDAO;
 import com.cheer.mapper.AccountStaffMapper;
@@ -49,6 +50,15 @@ public class AccountStaffDAOImpl extends BaseDAO implements AccountStaffMapper{
 				"%"+account.getStaff().getStaffName()+"%","%"+account.getStaff().getEmpno()+"%"});
 		long count = (Long)queryList.get(0).get("count");
 		return (int)count;
+	}
+
+	@Override
+	public int insertAccountStaff(AccountStaff accountStaff) {
+		String sql = "insert into i_account_staff (account_id,staff_id,created_by,created_time) values"
+				+ "(?,?,?,now())";
+		int row = getJdbcTemplate().update(sql,new Object[] {accountStaff.getAccountId(),accountStaff.getStaffId(),
+				accountStaff.getCreatedBy()});
+		return row;
 	}
 
 }
