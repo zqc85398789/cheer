@@ -48,4 +48,36 @@ public class DateUtil {
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		return sdf.parse(dateString);
 	}
+	
+	/**
+	 * 获取当年第一天的字符串形式
+	 * @param date
+	 * @return
+	 */
+	public static String getLastYear(Date date) {
+		String today = dateFormat(date, DATE_PATTERN);
+		String lastYear = today.substring(0,4)+"-01-01";
+		return lastYear;
+	}
+	
+	/**
+	 * 获取当月第一天的字符串形式
+	 * @param date
+	 * @return
+	 */
+	public static String getLastMonth(Date date) {
+		String today = dateFormat(date, DATE_PATTERN);
+		String lastMonth = today.substring(0,7)+"-01";
+		return lastMonth;
+	}
+	
+	/**
+	 * 获取当月第天的字符串形式
+	 * @param date
+	 * @return
+	 */
+	public static String getToday() {
+		String today = dateFormat(currentTime(), DATE_PATTERN);
+		return today;
+	}
 }

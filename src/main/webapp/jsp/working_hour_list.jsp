@@ -1,20 +1,21 @@
 <%@page language="java" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>创建账号</title>
+<title>工时管理</title>
 <%
 	String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ request.getContextPath();
 %>
 <link href="<%=path%>/css/bootstrap/bootstrap.css" rel="stylesheet"
 	type="text/css">
-<link href="<%=path%>/css/bootstrap/bootstrap-theme.css"
-	rel="stylesheet" type="text/css">
+<link href="<%=path%>/css/bootstrap/bootstrap-theme.css" rel="stylesheet"
+	type="text/css">
 <link href="<%=path%>/css/styles.css" rel="stylesheet" type="text/css">
+<link href="<%=path%>/css/labourers_family.css" rel="stylesheet"
+	type="text/css">
 </head>
 <body>
 	<div class="container-fluid">
@@ -25,13 +26,12 @@
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
 			<div
 				class="col-lg-8 col-md-8 col-lg-8 col-xs-8 text-center form-back">
-				<%@include file="base/staff_tag.jsp"%>
 				<br>
 				<div class="row text-primary">
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 						<!-- 查询条件表单 -->
-						<form action="/cheer/staff/queryStaff.do" method="post" id="query_param">
+						<form action="/cheer/queryWorkingHour.do" method="post" id="query_param">
 							<div class="form-group row">
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -57,45 +57,29 @@
 				<!-- 显示部分 -->
 				<div class="row">
 					<div>
-						<!-- 显示账号 -->
+						<!-- 显示工时信息 -->
 						<table class="table table-striped table-bordered table-reponsive">
 							<tr>
 								<th class="text-center">姓名</th>
-								<th class="text-center">生日</th>
-								<th class="text-center">电话</th>
-								<th class="text-center">员工号</th>
-								<th class="text-center">身份证号</th>
-								<th class="text-center">性别</th>
-								<th class="text-center">紧急联系人/电话</th>
+								<th class="text-center">工号</th>
+								<th class="text-center">本年度累计工时</th>
+								<th class="text-center">本月累计工时</th>
+								<th class="text-center">今日工时</th>
 								<th class="text-center">操作</th>
 							</tr>
 							<c:choose>
-								<c:when test="${not empty staffList}">
-									<c:forEach items="${staffList}" var="staff">
+								<c:when test="${not empty workingHourList}">
+									<c:forEach items="${workingHourList}" var="workingHour">
 										<tr>
-											<td class="text-center">${staff.staffName}</td>
-											<td class="text-center">${staff.birthDateAsStr}</td>
-											<td class="text-center">${staff.telephoneNo}</td>
-											<td class="text-center">${staff.empno}</td>
-											<td class="text-center">${staff.idCard}</td>
-											<td class="text-center">${staff.gender}</td>
-											<td class="text-center">${staff.emergencyContact}/${staff.emergencyTel}</td>
+											<td class="text-center">${workingHour.staff.staffName}</td>
+											<td class="text-center">${workingHour.staff.empno}</td>
+											<td class="text-center">${workingHour.yearDuration}</td>
+											<td class="text-center">${workingHour.monthDuration}</td>
+											<td class="text-center">${workingHour.duration}</td>
 											<td class="text-center">
 												<button class="update-button btn btn-primary btn-sm"
 													data-path="<%=request.getContextPath() %>"
-													data-staffId="${staff.id}">修改</button>
-												<c:choose>
-													<c:when test="${staff.isActive == 'Y'}">
-														<button class="delete-button btn btn-warning btn-sm"
-															data-path="<%=request.getContextPath() %>"
-															data-staffId="${staff.id}">删除</button>
-													</c:when>
-													<c:otherwise>
-														<button class="active-button btn btn-success btn-sm"
-															data-path="<%=request.getContextPath() %>"
-															data-staffId="${staff.id}">激活</button>
-													</c:otherwise>
-												</c:choose>
+													data-staff-empno="${workingHour.staff.empno}">今日打卡</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -137,6 +121,6 @@
 
 	<script src="<%=path%>/js/bootstrap/jquery-1.12.js"></script>
 	<script src="<%=path%>/js/bootstrap/bootstrap.js"></script>
-	<script src="<%=path%>/js/staff.js"></script>
+	<script src="<%=path%>/js/workingHour.js"></script>
 </body>
 </html>

@@ -8,5 +8,8 @@ $(function() {
 		}else{
 			$("#query_tag").removeClass("now-active");
 		}
+		if(href.indexOf("create")!=-1){
+			$("#create_tag").addClass("now-active");
+		}
 	});
 });

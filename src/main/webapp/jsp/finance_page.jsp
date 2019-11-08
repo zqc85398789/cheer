@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>工程管理系统-首页</title>
+<title>营收管理</title>
 <%
 	String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ request.getContextPath();

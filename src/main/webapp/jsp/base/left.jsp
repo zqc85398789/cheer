@@ -4,8 +4,8 @@
 	<div class="h4 text-info">页面导航</div>
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href="<%=request.getContextPath()%>/homePage.do">首页</a></li>
-		<li><a href="<%=request.getContextPath()%>/staff/staffList.do">员工管理</a></li>
-		<li><a href="<%=request.getContextPath()%>/laborHourList.do">工时管理</a></li>
+		<li class="staff"><a href="<%=request.getContextPath()%>/staff/staffList.do">员工管理</a></li>
+		<li class="workingHour"><a href="<%=request.getContextPath()%>/workingHourList.do">工时管理</a></li>
 		<li><a href="<%=request.getContextPath()%>/vacateList.do">请假记录</a></li>
 		<li><a href="<%=request.getContextPath()%>/codeList.do">code管理</a></li>
 		<li class="account"><a href="<%=request.getContextPath()%>/account/accountList.do">账号管理</a></li>

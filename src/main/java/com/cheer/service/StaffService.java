@@ -97,9 +97,56 @@ public class StaffService {
 		}
 	}
 
-	public List<Account> queryStaff(Staff staff, int queryPage) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Staff> queryStaff(Staff staff, int queryPage) {
+		List<Staff> staffList = staffDAO.queryStaff(staff, queryPage);
+		return staffList;
 	}
 
+	public boolean empnoExists(Staff staff) {
+		Staff st = staffDAO.queryByEmpno(staff);
+		if(st==null) {
+			return false;
+		}
+		if(st.getId().equals(staff.getId())) {
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean createStaff(Staff staff) {
+		try {
+			staffDAO.insertStaff(staff);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	public Staff queryStaffById(int id) {
+		Staff staff = staffDAO.queryStaffById(id);
+		return staff;
+	}
+
+	public boolean updateStaff(Staff staff) {
+		int row = 0;
+		try {
+			row = staffDAO.updateStaff(staff);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return row>0;
+	}
+
+	public boolean inActiveStaff(Staff staff) {
+		staff.setIsActive("N");
+		int row = staffDAO.activeStatus(staff);
+		return row>0;
+	}
+	
+	public boolean activeStaff(Staff staff) {
+		staff.setIsActive("Y");
+		int row = staffDAO.activeStatus(staff);
+		return row>0;
+	}
 }

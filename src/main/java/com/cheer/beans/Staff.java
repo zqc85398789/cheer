@@ -2,18 +2,36 @@ package com.cheer.beans;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.cheer.util.DateUtil;
+import com.cheer.validator.annotation.IsEmpno;
+import com.cheer.validator.annotation.IsIdCard;
+import com.cheer.validator.annotation.IsTelephone;
 
 public class Staff extends BaseBean {
+	@NotBlank(message="{staff.staffName.empty}")
 	private String staffName;
+	@NotNull(message="{staff.birthDate.empty}")
+	@Past(message="{staff.birthDate.past}")
 	private Date birthDate;
 	private String birthDateAsStr;
+	@NotBlank(message="{staff.telephoneNo.empty}")
+	@IsTelephone(message="{staff.telephoneNo.pattern}")
 	private String telephoneNo;
+	@NotBlank(message="{staff.idCard.empty}")
+	@IsIdCard(message="{staff.idCard.pattern}")
 	private String idCard;
 	private String gender;
 	private String emergencyContact;
-	private String emergency_tel;
+	private String emergencyTel;
+	@NotBlank(message="{staff.empno.empty}")
+	@IsEmpno(message="{staff.empno.pattern}")
 	private String empno;
+	private String isActive;
 	private Account account;
 
 
@@ -22,7 +40,7 @@ public class Staff extends BaseBean {
 	}
 
 	public Staff(String staffName, Date birthDate, String telephoneNo, String idCard, String gender,
-			String emergencyContact, String emergency_tel, String empno) {
+			String emergencyContact, String emergencyTel, String empno) {
 		super();
 		this.staffName = staffName;
 		this.birthDate = birthDate;
@@ -30,7 +48,7 @@ public class Staff extends BaseBean {
 		this.idCard = idCard;
 		this.gender = gender;
 		this.emergencyContact = emergencyContact;
-		this.emergency_tel = emergency_tel;
+		this.emergencyTel = emergencyTel;
 		this.empno = empno;
 	}
 
@@ -82,12 +100,12 @@ public class Staff extends BaseBean {
 		this.emergencyContact = emergencyContact;
 	}
 
-	public String getEmergency_tel() {
-		return emergency_tel;
+	public String getEmergencyTel() {
+		return emergencyTel;
 	}
 
-	public void setEmergency_tel(String emergency_tel) {
-		this.emergency_tel = emergency_tel;
+	public void setEmergencyTel(String emergencyTel) {
+		this.emergencyTel = emergencyTel;
 	}
 
 	public String getBirthDateAsStr() {
@@ -112,6 +130,13 @@ public class Staff extends BaseBean {
 		this.empno = empno;
 	}
 	
+	public String getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
+	}
 
 	public Account getAccount() {
 		return account;

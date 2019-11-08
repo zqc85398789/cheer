@@ -21,9 +21,9 @@ public class AccountStaffDAOImpl extends BaseDAO implements AccountStaffMapper{
 		String sql = "select a.id,a.account_name,a.created_by,a.created_time,a.update_by,a.update_time,s.staff_name,s.empno from i_account a join i_account_staff ast on a.id = ast.account_id join i_staff s "
 				+ "on ast.staff_id = s.id where a.account_name like ? and s.staff_name like ? and s.empno like ? limit ?,?";
 		int start = 5*(currentPage-1);
-		int end = 5*currentPage;
+		int quantity = 5;
 		List<Map<String,Object>> queryList = getJdbcTemplate().queryForList(sql,new Object[] {"%"+account.getAccountName()+"%",
-				"%"+account.getStaff().getStaffName()+"%","%"+account.getStaff().getEmpno()+"%",start,end});
+				"%"+account.getStaff().getStaffName()+"%","%"+account.getStaff().getEmpno()+"%",start,quantity});
 		List<Account> accounts = new ArrayList<Account>();
 		for(Map<String,Object> row:queryList) {
 			Account ac = new Account();

@@ -17,28 +17,11 @@ var path = getRootPath();
 $(function() {
 	$(".update-button").each(function() {
 		$(this).click(function() {
-			var staffId = $(this).attr("data-staffId");
+			var empno = $(this).attr("data-staff-empno");
 			window.location.href = path
-				+ "/staff/updateStaffPage.do/"
-				+ staffId + ".do";
-		});
-	});
-});
-
-$(function() {
-	$(".delete-button").each(function() {
-		$(this).click(function() {
-			var staffId = $(this).attr("data-staffId");
-			window.location.href=path + "/staff/deleteStaff.do/" + staffId + ".do";
-		});
-	});
-});
-
-$(function() {
-	$(".active-button").each(function() {
-		$(this).click(function() {
-			var staffId = $(this).attr("data-staffId");
-			window.location.href=path + "/staff/activeStaff.do/" + staffId + ".do";
+				+ "/updateWorkingHourPage.do/"
+				+ empno + ".do";
+			/*alert(path + "/updateWorkingHourPage.do/" + empno + ".do");*/
 		});
 	});
 });

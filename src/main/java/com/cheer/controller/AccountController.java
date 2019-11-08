@@ -97,7 +97,7 @@ public class AccountController extends BaseController{
 			model.addAttribute("account_create_msg", "账户创建成功");
 			return "account_create";
 		}
-		model.addAttribute("failed_create_msg", "创建账户失败，请检查后重试");
+		model.addAttribute("account_create_msg", "创建账户失败，请检查后重试");
 		return "account_create";
 	}
 
@@ -135,7 +135,7 @@ public class AccountController extends BaseController{
 		// 尝试创建账号
 		if (accountService.updateAccount(account, privilegeId)) {
 			model.addAttribute("account_update_msg", "账户修改成功");
-			return "account_list";
+			return "account_update";
 		}
 		model.addAttribute("account_update_msg", "修改账户失败，请检查后重试");
 		return "account_update";
