@@ -27,7 +27,7 @@
 		<hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
 		<mybatis.version>3.3.0</mybatis.version>
 		<log4j.version>1.2.17</log4j.version>
-		<json.verson>2.9.3</json.verson>
+		<json.verson>2.9.10.1</json.verson>
 		<fastjson.verson>1.2.47</fastjson.verson>
 	</properties>
 
