@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,9 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cheer.beans.Account;
-import com.cheer.beans.Staff;
 import com.cheer.controller.base.BaseController;
+import com.cheer.mybatis.mapper.IStaffMapper;
+import com.cheer.mybatis.model.IAccount;
+import com.cheer.mybatis.model.IStaff;
 import com.cheer.service.StaffService;
 import com.cheer.util.DateUtil;
 
@@ -40,16 +42,20 @@ public class StaffController extends BaseController{
 	
 	//账户列表页面
 	@RequestMapping("staffList.do")
-	public String staffList(@ModelAttribute("staff") Staff staff,Model model) {
+	public String staffList(@ModelAttribute("iStaff") IStaff iStaff,Model model) {
 		model.addAttribute("max_page",0);
 		return "staff_list";
 	}
 	
 	@RequestMapping("queryStaff.do")
-	public String queryAccount(@ModelAttribute("staff") Staff staff,@RequestParam int queryPage,Model model) {
-		List<Staff> staffList = staffService.queryStaff(staff,queryPage);
-		int maxPage = staffService.getMaxPage(staff);
-		model.addAttribute("staffList",staffList);
+	public String queryStaff(@ModelAttribute("iStaff") IStaff iStaff,@RequestParam int queryPage,Model model) {
+		List<IStaff> iStaffList = staffService.queryStaff(iStaff,queryPage);
+		if(iStaffList.size()==0) {
+			model.addAttribute("max_page",0);
+			return "staff_list";
+		}
+		int maxPage = staffService.getMaxPage(iStaff);
+		model.addAttribute("iStaffList",iStaffList);
 		model.addAttribute("max_page",maxPage);
 		model.addAttribute("current_page",queryPage);
 		return "staff_list";
@@ -57,13 +63,13 @@ public class StaffController extends BaseController{
 	
 	//员工创建页面
 	@RequestMapping("createStaffPage.do")
-	public String createAccountPage(@ModelAttribute("staff") Staff staff) {
+	public String createAccountPage(@ModelAttribute("iStaff") IStaff iStaff) {
 		return "staff_create";
 	}
 
 	//新建员工页面
 	@RequestMapping("createStaff.do")
-	public String createAccount(@ModelAttribute("staff") @Valid Staff staff, BindingResult br,
+	public String createAccount(@ModelAttribute("iStaff") @Valid IStaff iStaff, BindingResult br,
 			 Model model, HttpSession session) {
 		// 信息校验
 		if (br.hasErrors()) {
@@ -71,15 +77,14 @@ public class StaffController extends BaseController{
 			return "staff_create";
 		}
 		// 检查员工号是否重复
-		if (staffService.empnoExists(staff)) {
+		if (staffService.empnoExists(iStaff)) {
 			model.addAttribute("staff_create_msg", "创建账户失败，员工号已存在");
 			return "staff_create";
 		}
 		// 获取当前登录账户名
-		staff.setCreatedBy(((Account) session.getAttribute("loginAccount")).getAccountName());
-		staff.setCreatedTime(DateUtil.currentTime());
+		iStaff.setCreatedBy(((IAccount) session.getAttribute("loginAccount")).getAccountName());
 		// 尝试创建账号
-		if (staffService.createStaff(staff)) {
+		if (staffService.createStaff(iStaff)) {
 			model.addAttribute("staff_create_msg", "员工添加成功");
 			return "staff_create";
 		}
@@ -89,13 +94,13 @@ public class StaffController extends BaseController{
 
 	@RequestMapping("updateStaffPage.do/{id}.do")
 	public String updateStaffPage(@PathVariable int id,Model model) {
-		Staff staff = staffService.queryStaffById(id);
-		model.addAttribute("staff",staff);
+		IStaff iStaff = staffService.queryStaffById(id);
+		model.addAttribute("iStaff",iStaff);
 		return "staff_update";
 	}
 
 	@RequestMapping("updateStaff.do")
-	public String updateAccount(@ModelAttribute("staff") @Valid Staff staff, BindingResult br,
+	public String updateAccount(@ModelAttribute("iStaff") @Valid IStaff iStaff, BindingResult br,
 			Model model, HttpSession session) {
 		// 信息校验
 		if (br.hasErrors()) {
@@ -103,14 +108,14 @@ public class StaffController extends BaseController{
 			return "staff_update";
 		}
 		// 检查员工号是否重复
-		if (staffService.empnoExists(staff)) {
+		if (staffService.empnoExists(iStaff)) {
 			model.addAttribute("staff_update_msg", "修改失败，员工号已存在");
 			return "staff_update";
 		}
 		// 获取当前登录账户名
-		staff.setUpdateBy(((Account) session.getAttribute("loginAccount")).getAccountName());
+		iStaff.setUpdateBy(((IAccount) session.getAttribute("loginAccount")).getAccountName());
 		// 修改员工信息
-		if (staffService.updateStaff(staff)) {
+		if (staffService.updateStaff(iStaff)) {
 			model.addAttribute("staff_update_msg", "修改成功");
 			return "staff_update";
 		}
@@ -120,9 +125,9 @@ public class StaffController extends BaseController{
 
 	@RequestMapping("deleteStaff.do/{id}.do")
 	public String deleteStaff(@PathVariable("id")int id,Model model) {
-		Staff staff = new Staff();
-		staff.setId(id);
-		if(staffService.inActiveStaff(staff)) {
+		IStaff iStaff = new IStaff();
+		iStaff.setId(id);
+		if(staffService.inActiveStaff(iStaff)) {
 			model.addAttribute("staff_list_msg","删除成功");
 			return "staff_list";
 		}
@@ -132,9 +137,9 @@ public class StaffController extends BaseController{
 	
 	@RequestMapping("activeStaff.do/{id}.do")
 	public String activeStaff(@PathVariable int id,Model model) {
-		Staff staff = new Staff();
-		staff.setId(id);
-		if(staffService.activeStaff(staff)) {
+		IStaff iStaff = new IStaff();
+		iStaff.setId(id);
+		if(staffService.activeStaff(iStaff)) {
 			model.addAttribute("staff_list_msg","激活成功");
 			return "staff_list";
 		}

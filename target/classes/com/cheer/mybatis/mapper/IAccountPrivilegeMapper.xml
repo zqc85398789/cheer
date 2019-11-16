@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheer.mybatis.mapper.IAccountPrivilegeMapper">
+  <resultMap id="BaseResultMap" type="com.cheer.mybatis.model.IAccountPrivilege">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="privilege_id" jdbcType="INTEGER" property="privilegeId" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  
+  <resultMap type="com.cheer.mybatis.model.IPrivilege" id="IPrivilegeMap" 
+  extends="com.cheer.mybatis.mapper.IPrivilegeMapper.BaseResultMap">
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from i_account_privilege
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.cheer.mybatis.model.IAccountPrivilege">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into i_account_privilege (account_id, privilege_id, 
+      created_time, created_by)
+    values (#{accountId,jdbcType=INTEGER}, #{privilegeId,jdbcType=INTEGER}, 
+     now(), #{createdBy,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.cheer.mybatis.model.IAccountPrivilege">
+    update i_account_privilege
+    set account_id = #{accountId,jdbcType=INTEGER},
+      privilege_id = #{privilegeId,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, account_id, privilege_id, created_time, created_by, update_time, update_by, 
+    version
+    from i_account_privilege
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, account_id, privilege_id, created_time, created_by, update_time, update_by, 
+    version
+    from i_account_privilege
+  </select>
+  
+  <!-- 根据账户名返回权限信息 -->
+  <select id="queryPrivilegeByIAccount" parameterType="com.cheer.mybatis.model.IAccount"
+   resultMap="IPrivilegeMap">
+  	select p.privilege_name, p.privilege_url from i_privilege p join i_account_privilege ap
+  	 on p.id = ap.privilege_id join i_account a on a.id = ap.account_id
+  	  where a.account_name = #{accountName};
+  </select>
+  
+  <update id="updateAccountPrivilege" parameterType="com.cheer.mybatis.model.IAccountPrivilege">
+  	update i_account_privilege set privilege_id=#{privilegeId},update_by=#{updateBy},update_time=now() 
+  	where account_id= #{accountId}
+  </update>
+  
+  <cache eviction="LRU" size="1024">
+  </cache>
+</mapper>

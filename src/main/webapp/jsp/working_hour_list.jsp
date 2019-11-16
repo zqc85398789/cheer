@@ -38,12 +38,12 @@
 									<!-- 查询页号 -->
 									<input type="hidden" name="queryPage" id="query_page" value="1">
 									<!-- 账户名 -->
-									<input type="text" name="staffName" value="${staff.staffName}" class="form-control"
+									<input type="text" name="staffName" value="${iStaff.staffName}" class="form-control"
 										placeholder="输入姓名查询">
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 									<!-- 员工号 -->
-									<input type="text" name="empno" value="${staff.empno }" class="form-control"
+									<input type="text" name="empno" value="${iStaff.empno }" class="form-control"
 										placeholder="输入员工号查询">
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -62,24 +62,24 @@
 							<tr>
 								<th class="text-center">姓名</th>
 								<th class="text-center">工号</th>
-								<th class="text-center">本年度累计工时</th>
-								<th class="text-center">本月累计工时</th>
+								<th class="text-center">年度工时</th>
+								<th class="text-center">本月工时</th>
 								<th class="text-center">今日工时</th>
 								<th class="text-center">操作</th>
 							</tr>
 							<c:choose>
-								<c:when test="${not empty workingHourList}">
-									<c:forEach items="${workingHourList}" var="workingHour">
+								<c:when test="${not empty iWorkingHourList}">
+									<c:forEach items="${iWorkingHourList}" var="iWorkingHour">
 										<tr>
-											<td class="text-center">${workingHour.staff.staffName}</td>
-											<td class="text-center">${workingHour.staff.empno}</td>
-											<td class="text-center">${workingHour.yearDuration}</td>
-											<td class="text-center">${workingHour.monthDuration}</td>
-											<td class="text-center">${workingHour.duration}</td>
+											<td class="text-center">${iWorkingHour.iStaff.staffName}</td>
+											<td class="text-center">${iWorkingHour.empno}</td>
+											<td class="text-center">${iWorkingHour.yearDuration}</td>
+											<td class="text-center">${iWorkingHour.monthDuration}</td>
+											<td class="text-center">${iWorkingHour.duration}</td>
 											<td class="text-center">
 												<button class="update-button btn btn-primary btn-sm"
 													data-path="<%=request.getContextPath() %>"
-													data-staff-empno="${workingHour.staff.empno}">今日打卡</button>
+													data-staff-empno="${iWorkingHour.empno}">今日打卡</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -113,7 +113,6 @@
 							</ul>
 						</c:if>
 					</div>
-					<div><label class="text-danger h3">${staff_list_msg}</label></div>
 				</div>
 			</div>
 		</div>

@@ -3,55 +3,50 @@ package com.cheer.service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cheer.beans.Account;
-import com.cheer.beans.AccountPrivilege;
-import com.cheer.beans.AccountStaff;
-import com.cheer.beans.Staff;
-import com.cheer.mapper.AccountMapper;
-import com.cheer.mapper.AccountPrivilegeMapper;
-import com.cheer.mapper.AccountStaffMapper;
-import com.cheer.mapper.StaffMapper;
-import com.cheer.util.DateUtil;
+import com.cheer.mybatis.mapper.IAccountMapper;
+import com.cheer.mybatis.mapper.IAccountPrivilegeMapper;
+import com.cheer.mybatis.model.IAccount;
+import com.cheer.mybatis.model.IAccountPrivilege;
 
 @Service
 public class AccountService {
-	@Resource(name="accountDAO")
-	AccountMapper accountDAO;
-	@Resource(name="accountPrivilegeDAO")
-	AccountPrivilegeMapper accountPrivilegeDAO;
-	@Resource(name="accountStaffDAO")
-	AccountStaffMapper accountStaffDAO;
-	@Resource(name="staffDAO")
-	StaffMapper staffDAO;
+	@Autowired
+	IAccountMapper iAccountMapper;
+	@Autowired
+	IAccountPrivilegeMapper iAccountPrivilegeMapper;
 	
-	public boolean accountExists(Account account) {
-		if(accountDAO.queryAccounts(account).size()>0) {
+	public boolean accountExists(IAccount iAccount) {
+		if(iAccountMapper.queryAccounts(iAccount).size()!=0) {
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean createAccount(Account account,String privilegeId) {
+	public boolean empnoExists(IAccount iAccount) {
+		List<IAccount> list = iAccountMapper.queryAccountsByEmpno(iAccount);
+		if(list.size()>0) {
+			//若更新时，根据empno查到的记录是其本身，不干涉修改
+			if(list.get(0).getId().equals(iAccount.getId())) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean createAccount(IAccount iAccount,Integer privilegeId) {
 		try {
-			accountDAO.insertAccount(account);
-			int accountId = accountDAO.lastInsertId();
-			AccountPrivilege accountPrivilege = new AccountPrivilege(String.valueOf(accountId),privilegeId);
-			accountPrivilege.setCreatedBy(account.getCreatedBy());
-			accountPrivilegeDAO.insertAccountPrivilege(accountPrivilege);
-			Staff staff = new Staff();
-			staff.setCreatedBy(account.getCreatedBy());
-			staff.setCreatedTime(DateUtil.currentTime());
-			staffDAO.defaultInsert(staff);
-			int staffId = staffDAO.lastInsertId();
-			AccountStaff as = new AccountStaff();
-			as.setAccountId(String.valueOf(accountId));
-			as.setStaffId(String.valueOf(staffId));
-			as.setCreatedBy(account.getCreatedBy());
-			accountStaffDAO.insertAccountStaff(as);
+			iAccountMapper.insert(iAccount);
+			int accountId = iAccount.getId();
+			IAccountPrivilege iAccountPrivilege = new IAccountPrivilege();
+			iAccountPrivilege.setAccountId(accountId);
+			iAccountPrivilege.setPrivilegeId(privilegeId);
+			iAccountPrivilege.setCreatedBy(iAccount.getCreatedBy());
+			iAccountPrivilegeMapper.insert(iAccountPrivilege);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -59,22 +54,19 @@ public class AccountService {
 		return true;
 	}
 	
-	public Account queryAccountById(int id) {
-		Account account = new Account();
-		account.setId(id);
-		List<Account> list = accountDAO.queryAccounts(account);
-		if(list.size()>0) {
-			return list.get(0);
-		}
-		return null;
+	public IAccount queryAccountById(int id) {
+		IAccount iAccount = iAccountMapper.selectByPrimaryKey(id);
+		return iAccount;
 	}
 
-	public boolean updateAccount(Account account, String privilegeId) {
+	public boolean updateAccount(IAccount iAccount, Integer privilegeId) {
 		try {
-			accountDAO.updateAccount(account);
-			AccountPrivilege accountPrivilege = new AccountPrivilege(account.getId().toString(),privilegeId);
-			accountPrivilege.setUpdateBy(account.getUpdateBy());
-			accountPrivilegeDAO.updateAccountPrivilege(accountPrivilege);
+			iAccountMapper.updateByPrimaryKey(iAccount);
+			IAccountPrivilege iAccountPrivilege = new IAccountPrivilege();
+			iAccountPrivilege.setAccountId(iAccount.getId());
+			iAccountPrivilege.setPrivilegeId(privilegeId);
+			iAccountPrivilege.setUpdateBy(iAccount.getUpdateBy());
+			iAccountPrivilegeMapper.updateAccountPrivilege(iAccountPrivilege);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,19 +74,27 @@ public class AccountService {
 		return false;
 	}
 
-	public List<Account> queryAccountStaff(Account account, int currentPage) {
-		List<Account> list = accountStaffDAO.queryAccountStaff(account, currentPage);
+	public List<IAccount> queryIAccount(IAccount iAccount, int currentPage) {
+		int quantity = 5;
+		int start = quantity*(currentPage-1);
+		List<IAccount> list = iAccountMapper.queryIAccountInPage(iAccount, start,quantity);
 		return list;
 	}
 	
-	public int getMaxPage(Account account) {
+	public int getMaxPage(IAccount iAccount) {
 		try {
-			int row = accountStaffDAO.countAccountStaff(account);
-			return row%5==0?(row/5):(row/5+1);
+			int quantity = 5;
+			int row = iAccountMapper.countIAccount(iAccount).intValue();
+			return row%quantity==0?(row/quantity):(row/quantity+1);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+
+	public boolean deleteAccount(int id) {
+		int row = iAccountMapper.deleteByPrimaryKey(id);
+		return row>0;
 	}
 
 }

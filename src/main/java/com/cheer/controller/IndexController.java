@@ -14,4 +14,9 @@ public class IndexController extends BaseController {
 		return "home_page";
 	}
 	
+	@RequestMapping("404.do")
+	public String missPage() {
+		return "error/404";
+	}
+	
 }

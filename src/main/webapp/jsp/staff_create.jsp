@@ -30,7 +30,7 @@
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right">
 						<form:form action="createStaff.do" method="post"
-							modelAttribute="staff">
+							modelAttribute="iStaff">
 							<div class="form-group row">
 								<!-- 姓名 -->
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
@@ -39,7 +39,7 @@
 									for="staffName">姓名：</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<form:input path="staffName" cssClass="form-control"
-										id="staffName" value="${staff.staffName}" />
+										id="staffName" value="${iStaff.staffName}" />
 								</div>
 								<div
 									class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-danger text-left">
@@ -55,7 +55,7 @@
 									for="telephoneNo">电话：</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<form:input path="telephoneNo" cssClass="form-control"
-										id="telephoneNo" value="${staff.telephoneNo}" />
+										id="telephoneNo" value="${iStaff.telephoneNo}" />
 								</div>
 								<div
 									class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-danger text-left">
@@ -70,7 +70,7 @@
 									for="idCard">身份证：</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<form:input path="idCard" cssClass="form-control"
-										id="idCard" value="${staff.idCard}" />
+										id="idCard" value="${iStaff.idCard}" />
 								</div>
 								<div
 									class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-danger text-left">
@@ -85,7 +85,7 @@
 									for="emergencyContact">联系人：</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<form:input path="emergencyContact" cssClass="form-control"
-										id="emergencyContact" value="${staff.emergencyContact}" />
+										id="emergencyContact" value="${iStaff.emergencyContact}" />
 								</div>
 								<div
 									class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-danger text-left">
@@ -100,7 +100,7 @@
 									for="emergencyTel">紧急联系电话：</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<form:input path="emergencyTel" cssClass="form-control"
-										id="emergencyTel" value="${staff.emergencyTel}" />
+										id="emergencyTel" value="${iStaff.emergencyTel}" />
 								</div>
 								<div
 									class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-danger text-left">
@@ -115,7 +115,7 @@
 									for="empno">员工号：</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<form:input path="empno" cssClass="form-control"
-										id="empno" value="${staff.empno}" />
+										id="empno" value="${iStaff.empno}" />
 								</div>
 								<div
 									class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-danger text-left">
@@ -129,7 +129,7 @@
 									class="article col-lg-3 col-md-3 col-sm-3 col-xs-3 text-primary"
 									for="birthDate">生日：</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-left">
-									<input type="date" id="birthDate" name="birthDate" pattern="yyyy-MM-dd" value="${staff.birthDateAsStr}">
+									<form:input cssClass="form-control" type="date" id="birthDate" path="birthDate" pattern="yyyy-MM-dd" value="${iStaff.birthDateAsStr}"/>
 								</div>
 								<div
 									class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-danger text-left">
@@ -170,6 +170,6 @@
 
 	<script src="<%=path%>/js/bootstrap/jquery-1.12.js"></script>
 	<script src="<%=path%>/js/bootstrap/bootstrap.js"></script>
-	<script src="<%=path%>/js/account.js"></script>
+	<script src="<%=path%>/js/staff.js"></script>
 </body>
 </html>

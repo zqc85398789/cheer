@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  
+  <!-- 全局配置参数 -->
+  <settings>
+    <!-- 指定使用Log4J作为日志输出 -->
+    <setting name="logImpl" value="LOG4J" />
+    <!-- 自动将以下画线方式命名的数据库列映射到Java对象的驼峰式命名属性中 -->
+    <setting name="mapUnderscoreToCamelCase" value="true" />
+    
+    <setting name="aggressiveLazyLoading" value="true"/>
+  </settings>
+</configuration>

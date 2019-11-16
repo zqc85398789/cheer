@@ -19,16 +19,16 @@ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
 		userId="root" password="zqc67335347"></jdbcConnection>
 		
 		<!-- 配置model类生成路径 -->
-		<javaModelGenerator targetPackage="com.cheer.model" targetProject="src/main/java">
+		<javaModelGenerator targetPackage="com.cheer.ibatis.model" targetProject="src/main/java">
 			<property name="trimStrings" value="true"/>
 		</javaModelGenerator>
 		
 		<!-- 配置mapper.xml生成路径 -->
-		<sqlMapGenerator targetPackage="com.cheer.mapper" targetProject="src/main/resources">
+		<sqlMapGenerator targetPackage="com.cheer.ibatis.mapper" targetProject="src/main/resources">
 		</sqlMapGenerator>
 		
 		<!-- 配置mapper接口生成路径 -->
-		<javaClientGenerator targetPackage="com.cheer.mapper" type="XMLMAPPER" targetProject="src/main/java"></javaClientGenerator>
+		<javaClientGenerator targetPackage="com.cheer.ibatis.mapper" type="XMLMAPPER" targetProject="src/main/java"></javaClientGenerator>
 		
 		<table tableName="i_%">
 			<generatedKey column="id" sqlStatement="MySql"/>

@@ -37,18 +37,13 @@
 									<!-- 查询页号 -->
 									<input type="hidden" name="queryPage" id="query_page" value="1">
 									<!-- 账户名 -->
-									<input type="text" name="accountName" value="${account.accountName}" class="form-control"
+									<input type="text" name="accountName" value="${iAccount.accountName}" class="form-control"
 										placeholder="输入用户名查询">
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 									<!-- 员工号 -->
-									<input type="text" name="staff.empno" value="${account.staff.empno }" class="form-control"
+									<input type="text" name="staff.empno" value="${iAccount.empno }" class="form-control"
 										placeholder="输入员工号查询">
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-									<!-- 姓名 -->
-									<input type="text" name="staff.staffName" value="${account.staff.staffName }" class="form-control"
-										placeholder="输入姓名查询">
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 									<button class="btn btn-success" type="submit">查询</button>
@@ -65,7 +60,6 @@
 						<table class="table table-striped table-bordered table-reponsive">
 							<tr>
 								<th class="text-center">账户名</th>
-								<th class="text-center">姓名</th>
 								<th class="text-center">员工号</th>
 								<th class="text-center">创建者</th>
 								<th class="text-center">创建时间</th>
@@ -74,23 +68,22 @@
 								<th class="text-center">操作</th>
 							</tr>
 							<c:choose>
-								<c:when test="${not empty accountList}">
-									<c:forEach items="${accountList}" var="account">
+								<c:when test="${not empty iAccountList}">
+									<c:forEach items="${iAccountList}" var="iAccount">
 										<tr>
-											<td class="text-center">${account.accountName}</td>
-											<td class="text-center">${account.staff.staffName}</td>
-											<td class="text-center">${account.staff.empno}</td>
-											<td class="text-center">${account.createdBy}</td>
-											<td class="text-center">${account.createdTimeAsStr}</td>
-											<td class="text-center">${account.updateBy}</td>
-											<td class="text-center">${account.updateTimeAsStr}</td>
+											<td class="text-center">${iAccount.accountName}</td>
+											<td class="text-center">${iAccount.empno}</td>
+											<td class="text-center">${iAccount.createdBy}</td>
+											<td class="text-center">${iAccount.createdTimeAsStr}</td>
+											<td class="text-center">${iAccount.updateBy}</td>
+											<td class="text-center">${iAccount.updateTimeAsStr}</td>
 											<td class="text-center">
 												<button class="update-button btn btn-primary btn-sm"
 													data-path="<%=request.getContextPath() %>"
-													data-accountId="${account.id}">修改</button>
+													data-accountId="${iAccount.id}">修改</button>
 												<button class="delete-button btn btn-sm"
 													data-path="<%=request.getContextPath() %>"
-													data-accountId="${account.id}">删除</button>
+													data-accountId="${iAccount.id}">删除</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -98,6 +91,7 @@
 							</c:choose>
 						</table>
 					</div>
+					<div class="h4 text-danger">${account_list_msg }</div>
 				</div>
 				<!-- 分页标签 -->
 				<div class="row text-primary">

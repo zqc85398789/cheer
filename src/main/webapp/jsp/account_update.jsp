@@ -31,16 +31,16 @@
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 						<form:form action="/cheer/account/updateAccount.do" method="post"
-							modelAttribute="account">
+							modelAttribute="iAccount">
 							<div class="form-group row">
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 								<label
 									class="article col-lg-2 col-md-2 col-sm-2 col-xs-2 text-primary"
 									for="username">用户名：</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-									<form:hidden path="id" value="${account.id}"/>
+									<form:hidden path="id" value="${iAccount.id}"/>
 									<form:input path="accountName" cssClass="form-control"
-										id="username" value="${account.accountName}" readonly="true" />
+										id="username" value="${iAccount.accountName}" readonly="true" />
 								</div>
 								<div
 									class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-danger text-left">
@@ -74,11 +74,28 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
-								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-									<label for="boss" class="text-primary">老板</label>
-									<input type="radio" name="privilegeId" id="boss" value="2" />
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+								<label
+									class="article col-lg-2 col-md-2 col-sm-2 col-xs-2 text-primary"
+									for="empno">员工号：</label>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<form:input path="empno" id="empno"
+										cssClass="form-control" value="${iAccount.empno }" 
+										placeholder="字母或数字组成，长度6位"/>
 								</div>
+								<div
+									class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-danger text-left">
+									<form:errors path="empno" cssClass="text-danger"></form:errors>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+								<c:if test="${not empty admin}">
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+										<label for="boss" class="text-primary">老板</label>
+										<input type="radio" name="privilegeId" id="boss" value="2" />
+									</div>
+								</c:if>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 									<label for="foreman" class="text-primary">组长</label>
 									<input type="radio" name="privilegeId" id="foreman" value="3" checked="checked"/>
@@ -91,7 +108,7 @@
 										class="btn btn-primary">提交修改</button>
 								</div>
 								<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-danger">
-									${update_account_msg}
+									${account_update_msg}
 								</label>
 							</div>
 						</form:form>

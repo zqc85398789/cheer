@@ -74,3 +74,7 @@ $(function() {
 		}
 	});
 });
+
+$(function(){
+	$(".staff").addClass("now-active");
+});

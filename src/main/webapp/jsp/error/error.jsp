@@ -21,7 +21,7 @@
 		<div class="error_info row text-center">
 			<img src="<%=path %>/images/apologize.png"><br>
 			<br> <label>系统似乎遇到了一点问题，请稍后再试……</label><br>
-			<a class="btn btn-success" href="<%=path %>">回首页</a>
+			<a class="btn btn-success" href="<%=path %>/homePage.do">回首页</a>
 		</div>
 	</div>
 	<script src="<%=path %>/js/bootstrap/jquery-1.12.js"></script>

@@ -6,11 +6,13 @@
 		<li><a href="<%=request.getContextPath()%>/homePage.do">首页</a></li>
 		<li class="staff"><a href="<%=request.getContextPath()%>/staff/staffList.do">员工管理</a></li>
 		<li class="workingHour"><a href="<%=request.getContextPath()%>/workingHourList.do">工时管理</a></li>
-		<li><a href="<%=request.getContextPath()%>/vacateList.do">请假记录</a></li>
-		<li><a href="<%=request.getContextPath()%>/codeList.do">code管理</a></li>
-		<li class="account"><a href="<%=request.getContextPath()%>/account/accountList.do">账号管理</a></li>
-		<li class="tally"><a href="<%=request.getContextPath()%>/financePage.do">营收管理</a></li>
-		<li><a href="<%=request.getContextPath()%>/salaryPage.do">工资管理</a></li>
+		<c:if test="${not empty admin or not empty boss }">
+			<li class="leaveDay"><a href="<%=request.getContextPath()%>/leaveDayList.do">请假记录</a></li>
+			<li><a href="<%=request.getContextPath()%>/codeList.do">code管理</a></li>
+			<li class="account"><a href="<%=request.getContextPath()%>/account/accountList.do">账号管理</a></li>
+			<%-- <li class="tally"><a href="<%=request.getContextPath()%>/financePage.do">营收管理</a></li> --%>
+			<li class="salary"><a href="<%=request.getContextPath()%>/salary/salaryPage.do">工资管理</a></li>
+		</c:if>
 	</ul>
 	<div class="container-fluid">
 		&nbsp;

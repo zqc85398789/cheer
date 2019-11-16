@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>创建账号</title>
+<title>员工列表</title>
 <%
 	String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ request.getContextPath();
@@ -38,12 +38,12 @@
 									<!-- 查询页号 -->
 									<input type="hidden" name="queryPage" id="query_page" value="1">
 									<!-- 账户名 -->
-									<input type="text" name="staffName" value="${staff.staffName}" class="form-control"
+									<input type="text" name="staffName" value="${iStaff.staffName}" class="form-control"
 										placeholder="输入姓名查询">
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 									<!-- 员工号 -->
-									<input type="text" name="empno" value="${staff.empno }" class="form-control"
+									<input type="text" name="empno" value="${iStaff.empno }" class="form-control"
 										placeholder="输入员工号查询">
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -70,30 +70,30 @@
 								<th class="text-center">操作</th>
 							</tr>
 							<c:choose>
-								<c:when test="${not empty staffList}">
-									<c:forEach items="${staffList}" var="staff">
+								<c:when test="${not empty iStaffList}">
+									<c:forEach items="${iStaffList}" var="iStaff">
 										<tr>
-											<td class="text-center">${staff.staffName}</td>
-											<td class="text-center">${staff.birthDateAsStr}</td>
-											<td class="text-center">${staff.telephoneNo}</td>
-											<td class="text-center">${staff.empno}</td>
-											<td class="text-center">${staff.idCard}</td>
-											<td class="text-center">${staff.gender}</td>
-											<td class="text-center">${staff.emergencyContact}/${staff.emergencyTel}</td>
+											<td class="text-center">${iStaff.staffName}</td>
+											<td class="text-center">${iStaff.birthDateAsStr}</td>
+											<td class="text-center">${iStaff.telephoneNo}</td>
+											<td class="text-center">${iStaff.empno}</td>
+											<td class="text-center">${iStaff.idCard}</td>
+											<td class="text-center">${iStaff.gender}</td>
+											<td class="text-center">${iStaff.emergencyContact}/${iStaff.emergencyTel}</td>
 											<td class="text-center">
 												<button class="update-button btn btn-primary btn-sm"
 													data-path="<%=request.getContextPath() %>"
-													data-staffId="${staff.id}">修改</button>
+													data-staffId="${iStaff.id}">修改</button>
 												<c:choose>
-													<c:when test="${staff.isActive == 'Y'}">
+													<c:when test="${iStaff.isActive == 'Y'}">
 														<button class="delete-button btn btn-warning btn-sm"
 															data-path="<%=request.getContextPath() %>"
-															data-staffId="${staff.id}">删除</button>
+															data-staffId="${iStaff.id}">删除</button>
 													</c:when>
 													<c:otherwise>
 														<button class="active-button btn btn-success btn-sm"
 															data-path="<%=request.getContextPath() %>"
-															data-staffId="${staff.id}">激活</button>
+															data-staffId="${iStaff.id}">激活</button>
 													</c:otherwise>
 												</c:choose>
 											</td>

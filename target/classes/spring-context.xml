@@ -26,7 +26,7 @@
 		location="classpath:properties/dev-env.properties" />
 
 	<mvc:annotation-driven
-		conversion-service="conversionService"  validator="validator"></mvc:annotation-driven>
+		conversion-service="conversionService" validator="validator"></mvc:annotation-driven>
 
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource">
@@ -60,30 +60,52 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="providerClass"
 			value="org.hibernate.validator.HibernateValidator" />
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
-	
+
 	<!-- 事务管理器 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
+
 	<!-- 事务通知 -->
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<tx:advice id="txAdvice"
+		transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="create*" propagation="REQUIRED"/>
+			<tx:method name="create*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
-	
+
 	<aop:config>
-		<aop:pointcut id="pointCut" expression="execution(* com.cheer.service.*AccountService.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut"/>
+		<aop:pointcut id="pointCut"
+			expression="execution(* com.cheer.service.*AccountService.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut" />
 	</aop:config>
-	
+
+	<bean id="sqlSessionFacotry"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml"></property>
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations">
+			<array>
+				<!-- <value>classpath:com/cheer/mapper/*.xml</value> -->
+				<value>classpath:com/cheer/**/mapper/*.xml</value>
+			</array>
+		</property>
+		<property name="typeAliasesPackage" value="com.cheer.mybatis.model"></property>
+		<!-- <property name="typeAliasesPackage" value="com.cheer.beans"></property> -->
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- <property name="basePackage" value="com.cheer.mapper"></property> -->
+		<property name="basePackage" value="com.cheer.mybatis.mapper"></property>
+	</bean>
+
 </beans>

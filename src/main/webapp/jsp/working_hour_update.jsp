@@ -29,10 +29,10 @@
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-center">
 						<c:choose>
-							<c:when test="${not empty workingHour}">
+							<c:when test="${not empty iWorkingHour}">
 								<div>
-									<label class="h3 text-info">员工：${workingHour.staff.staffName}&emsp;
-										工号：${workingHour.staff.empno}</label>
+									<label class="h3 text-info">员工：${iWorkingHour.iStaff.staffName}&emsp;
+										工号：${iWorkingHour.iStaff.empno}</label>
 								</div>
 								<form action="/cheer/updateWorkingHour.do" method="post">
 									<div class="form-group row">
@@ -41,10 +41,10 @@
 											class="article col-lg-3 col-md-3 col-sm-3 col-xs-3 text-primary"
 											for="duration">请输入工作时长</label>
 										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-											<input type="hidden" name="staff.staffName" value="${workingHour.staff.staffName}"/>
-											<input type="hidden" name="staff.empno" value="${workingHour.staff.empno}"/>
+											<input type="hidden" name="iStaff.staffName" value="${iWorkingHour.iStaff.staffName}"/>
+											<input type="hidden" name="iStaff.empno" value="${iWorkingHour.iStaff.empno}"/>
 											<input type="number" max="24" min="0" name="duration" class="form-control"
-												id="duration" value="${workingHour.duration}" />
+												id="duration" value="${iWorkingHour.duration}" />
 										</div>
 									</div>
 									<div class="form-group row">

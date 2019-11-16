@@ -26,7 +26,7 @@
 				<div class="row login-form">
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
 					<div class="form-back col-lg-6 col-md-6 col-sm-6 col-xs-6">
-						<form:form action="/cheer/login.do" method="post" modelAttribute="account">
+						<form:form action="/cheer/login.do" method="post" modelAttribute="iAccount">
 							<div class="form-group row">
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 								<label
@@ -45,18 +45,6 @@
 									<form:password path="accountPassword" id="password" cssClass="form-control"/>
 								</div>
 							</div>
-							<%-- <div class="form-group row">
-								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-								<label
-									class="article col-lg-2 col-md-2 col-sm-2 col-xs-2 text-primary"
-									for="permission">账号类别：</label>
-								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-primary">
-									<form:radiobutton path="permission" id="permission" label="管理员"  value="admin"/>
-								</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-primary">
-									<form:radiobutton path="permission" id="permission" label="普通用户" value="nomal"/>
-								</div>
-							</div> --%>
 							<div class="form-group row">
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">

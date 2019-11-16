@@ -60,6 +60,12 @@ public class DateUtil {
 		return lastYear;
 	}
 	
+	public static String getEndOfYear(Date date) {
+		String today = dateFormat(date, DATE_PATTERN);
+		String endOfYear = today.substring(0,4)+"-12-31";
+		return endOfYear;
+	}
+	
 	/**
 	 * 获取当月第一天的字符串形式
 	 * @param date

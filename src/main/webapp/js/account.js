@@ -29,9 +29,9 @@ $(function() {
 	$(".delete-button").each(function() {
 		$(this).click(function() {
 			var accountId = $(this).attr("data-accountId");
-			alert(path + "/account/deleteAccountPage.do/" + accountId + ".do");
-			// window.location.href= path +
-			// "/account/deleteAccountPage.do/"+accountId+".do";
+			if(confirm("确认要删除吗？")){
+				window.location.href= path + "/account/deleteAccountPage.do/" + accountId + ".do";
+			}
 		});
 	});
 });

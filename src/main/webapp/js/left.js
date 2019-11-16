@@ -1,5 +1,5 @@
 $(function() {
-	$(".nav-tabs").find("li").each(function() {
+	$(".nav-stacked").find("li").each(function() {
 		var a = $(this).find("a:first");
 		if ($(a).attr("href") == location.pathname) {
 			$(this).addClass("now-active");
